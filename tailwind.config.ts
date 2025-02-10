@@ -11,6 +11,10 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        mainColor : "#00757F",
+        iconGrey : "rgb(90 101 102)",
+        lightGray : "#EDF2F2",
+        darkGray : "rgb(90 101 102)",
       },
     },
   },
