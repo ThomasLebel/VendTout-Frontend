@@ -30,21 +30,21 @@ const SearchBar = () => {
 
 
   return (
-    <div className="w-full bg-lightGray flex  rounded-md">
-      <div className="w-28 relative border-r border-darkGray border-opacity-20 p-1">
+    <div className="w-full bg-lightGrey flex  rounded-md">
+      <div className="w-28 relative border-r border-darkGrey border-opacity-20 p-1">
         <Listbox value={selectedOption} onChange={setSelectedOption}>
           <div className="flex items-center justify-center h-full">
-            <ListboxButton className="flex items-center justify-between px-4 text-sm text-darkGray font-semibold">
+            <ListboxButton className="flex items-center justify-between px-4 text-sm text-darkGrey font-semibold">
               <span>{selectedOption.name}</span>
-              <ChevronDownIcon className="w-4 h-4 ml-2 text-darkGray" />
+              <ChevronDownIcon className="w-4 h-4 ml-2 text-darkGrey" />
             </ListboxButton>
           </div>
-          <ListboxOptions className="absolute w-full mt-3 bg-white rounded-md border border-gray-200 p-2 z-10">
+          <ListboxOptions className="absolute w-full mt-3 bg-white rounded-md border border-gray-200 z-50">
             {options.map((option) => (
               <ListboxOption
                 key={option.id}
                 value={option}
-                className="mb-2 text-darkGray"
+                className="px-2 py-2  text-darkGrey cursor-pointer hover:bg-gray-100"
               >
                 {option.name}
               </ListboxOption>
@@ -52,8 +52,8 @@ const SearchBar = () => {
           </ListboxOptions>
         </Listbox>
       </div>
-      <div className="flex items-center justify-center p-2">
-        <MagnifyingGlassIcon className="w-5 h-5 ml-2 text-darkGray" />
+      <div className="flex items-center justify-center p-2 w-full">
+        <MagnifyingGlassIcon className="w-5 h-5 ml-2 text-darkGrey" />
         <input
           type="text"
           placeholder={`Rechercher des ${selectedOption.name.toLowerCase()}`}
