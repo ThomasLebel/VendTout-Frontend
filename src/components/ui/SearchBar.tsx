@@ -23,7 +23,7 @@ const options: Option[] = [
   { id: 2, name: "Membres" },
 ];
 
-const SearchBar = () => {
+const SearchBar = ({id}: {id: string}) => {
 
   const [selectedOption, setSelectedOption] = useState<Option>(options[0]);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -55,6 +55,7 @@ const SearchBar = () => {
       <div className="flex items-center justify-center p-2 w-full">
         <MagnifyingGlassIcon className="w-5 h-5 ml-2 text-darkGrey" />
         <input
+          id={id}
           type="text"
           placeholder={`Rechercher des ${selectedOption.name.toLowerCase()}`}
           className="ml-2 w-full bg-transparent outline-none text-sm"

@@ -1,37 +1,64 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface UserState {
-  token: string | null;
+interface UserValue {
+  fullName: string | null;
   email: string | null;
-  firstname: string | null;
-  lastname: string | null;
+  token: string | null;
+  username: string | null;
+  aboutDescription: string | null;
+  profilePicture: string | null;
+  country: string | null;
+  city: string | null;
+  gender: string | null;
+  birthDate: string | null;
+  shippingAddress: {
+    fullName: string;
+    street: string;
+    city: string;
+    zipCode: string;
+  } | null;
+  likedProducts: string[] | null;
+  postedProducts: string[] | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
+}
+
+interface UserState {
+  value: UserValue;
 }
 
 const initialState: UserState = {
-  token: null,
-  email: null,
-  firstname: null,
-  lastname: null,
+  value: {
+    fullName: null,
+    email: null,
+    token: null,
+    username: null,
+    aboutDescription: null,
+    profilePicture: null,
+    country: null,
+    city: null,
+    gender: null,
+    birthDate: null,
+    shippingAddress: null,
+    likedProducts: null,
+    postedProducts: null,
+    createdAt: null,
+    updatedAt: null,
+  },
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<UserState>) => {
-      state.token = action.payload.token;
-      state.email = action.payload.email;
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
+    updateUser: (state, action: PayloadAction<UserValue>) => {
+      state.value = action.payload;
     },
     logout: (state) => {
-      state.token = null;
-      state.email = null;
-      state.firstname = null;
-      state.lastname = null;
+      state.value = initialState.value;
     },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { updateUser, logout } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,3 +1,5 @@
+"use client";
+
 import ProductCard from "../ui/ProductCard";
 
 const NewsFeed = () => {

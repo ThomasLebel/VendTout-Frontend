@@ -1,4 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/app/redux/store";
+import { logout } from "@/app/redux/slices/userSlice";
+
 import Button from "../ui/Button";
 
 import {
@@ -39,6 +45,19 @@ const categories: Category[] = [
 ];
 
 const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
+
+  //Création du dispatch
+  const dispatch = useAppDispatch();
+
+  //Récupération de l'utilisateur
+  const user = useAppSelector((state) => state.user.value);
+
+  //Fonction de déconnexion
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+
   return (
     <div className="absolute top-0 left-0 w-screen h-screen bg-white flex flex-col items-center z-50">
       {/* Section Boutons */}
@@ -99,27 +118,27 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
             >
               <div className="flex items-center gap-2">
                 <Image
-                  src="/images/avatar.jpg"
+                  src={user.profilePicture || "https://res.cloudinary.com/dkf48p2ah/image/upload/v1739526042/idkhe6v85woa3fdoszls.jpg"}
                   alt="avatar"
                   width={50}
                   height={50}
                   className="rounded-full"
                 />
                 <div>
-                  <p className="text-base font-medium">azzzert12</p>
+                  <p className="text-base font-medium">{user.username}</p>
                   <p className="text-base text-darkGrey">Voir mon profil</p>
                 </div>
               </div>
             </a>
-            <a
+            <Link 
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
-              href="/"
+              href="/settings/profile"
             >
               <div className="flex items-center gap-2">
                 <Cog6ToothIcon className="size-7 text-darkGrey" />
                 <span className="text-base font-medium">Mes paramètres</span>
               </div>
-            </a>
+            </Link>
             <a
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/"
@@ -144,7 +163,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
             >
               <div className="flex items-center gap-2">
                 <ArrowRightStartOnRectangleIcon className="size-7 text-darkGrey" />
-                <span className="text-base font-medium">Se déconnecter</span>
+                <span className="text-base font-medium" onClick={handleLogout}>Se déconnecter</span>
               </div>
             </a>
           </div>
