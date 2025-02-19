@@ -1,0 +1,91 @@
+[
+    {
+        "color" : "Noir",
+        "hex" : "#000000"
+    },
+    {
+        "color" : "Marron",
+        "hex" : "#663300"
+    },
+    {
+        "color" : "Gris",
+        "hex" : "#919191"
+    },
+    {
+        "color" : "Beige",
+        "hex" : "#F4E0C8"
+    },
+    {
+        "color" : "Fushia",
+        "hex" : "#FF0080"
+    },
+    {
+        "color" : "Violet",
+        "hex" : "#800080"
+    },
+    {
+        "color" : "Rouge",
+        "hex" : "#CC3300"
+    },
+    {
+        "color" : "Jaune",
+        "hex" : "#FFF200"
+    },
+    {
+        "color" : "Bleu",
+        "hex" : "#007BC4"
+    },
+    {
+        "color" : "Vert",
+        "hex" : "#369A3D"
+    },
+    {
+        "color" : "Orange",
+        "hex" : "#FFA500"
+    },
+    {
+        "color" : "Blanc",
+        "hex" : "#FFFFFF"
+    },
+    {
+        "color" : "Kaki",
+        "hex" : "#86814A"
+    },
+    {
+        "color" : "Turquoise",
+        "hex" : "#B7DEE8"
+    },
+    {
+        "color" : "Crème",
+        "hex" : "#F8F8E1"
+    },
+    {
+        "color" : "Abricot",
+        "hex" : "#FFCC98"
+    },
+    {
+        "color" : "Corail",
+        "hex" : "#FF8F2F"
+    },
+    {
+        "color" : "Bordeaux",
+        "hex" : "#AE2E3D"
+    },
+    {
+        "color" : "Rose",
+        "hex" : "#FFCCCA"
+    },
+    {
+        "color" : "Bleu clair",
+        "hex" : "#89CFF0"
+    },
+    {
+        "color" : "Marine",
+        "hex" : "#35358D"
+    },
+    {
+        "color" : "Vert Foncé",
+        "hex" : "#356639"
+    }
+        
+]

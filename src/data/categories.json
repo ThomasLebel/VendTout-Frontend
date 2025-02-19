@@ -1,0 +1,44 @@
+[
+  {
+    "name" : "Femme",
+    "subCategories": [
+      "Manteaux et vestes",
+      "Sweats",
+      "Robes et Jupes",
+      "Haut et t-shirt",
+      "Pantalons et jeans",
+      "Short",
+      "Chaussures",
+      "Accessoires",
+      "Autres"
+    ],
+    "logoURL" : "https://images1.vinted.net/t/04_01539_X6Mbt9QKVqtUmVowqzd6HiTc/48x48/1739961353.png?s=9f528fe888114207938309ca8127b48fcdcdd0d4"
+  },
+  {
+    "name" : "Homme",
+    "subCategories": [
+      "Pantalons et Jeans",
+      "Manteaux et vestes",
+      "Haut et t-shirt",
+      "Costumes et blazers",
+      "Sweat et pulls",
+      "Shorts",
+      "Chaussures",
+      "Accessoires"
+    ],
+    "logoURL" : "https://images1.vinted.net/t/04_013a7_p8oNmvczgzFPLeRhkPqof9Qb/48x48/1739961339.png?s=20dba2c5938b26b92d0f7b7c37f010a1fff4fd9e"
+  },
+  {
+    "name" : "Enfants",
+    "subCategories": [
+    "Chaussures",
+    "Vêtements d’extérieur",
+    "Pull & sweats",
+    "Chemises et t-shirts",
+    "Robes et Jupes",
+    "Pantalons et short"
+  ],
+    "logoURL" : "https://images1.vinted.net/t/04_01b70_yVZuEPt9XHBBfhLRaqcj1Fbc/48x48/1739961347.png?s=9e48017ffda1b0f2d52f4b9153a052135ef4c38a"
+  }
+  
+]

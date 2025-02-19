@@ -1,0 +1,23 @@
+[
+    {
+        "condition" : "Neuf avec étiquette",
+        "description" : "Article neuf, jamais porté/utilisé avec étiquettes ou dans son emballage d’origine."
+    },
+    {
+        "condition" : "Neuf sans étiquette",
+        "description" : "Article neuf, jamais porté/utilisé, sans étiquettes ni emballage d’origine."
+    },
+    {
+        "condition" : "Très bon état",
+        "description" : "Article très peu porté/utilisé qui peut présenter de légères imperfections, mais qui reste en très bon état. Précise avec des photos et une description détaillée, les défauts de ton article."
+    },
+    {
+        "condition" : "Bon état",
+        "description" : "Article porté/utilisé quelques fois, présentant des imperfections et des signes d’usure. Précise avec des photos et une description détaillée, les défauts de ton article."
+    },
+    {
+        "condition" : "Satisfaisant",
+        "description" : "Article porté/utilisé plusieurs fois, présentant des imperfections et des signes d’usure. Précise avec des photos et une description détaillée, les défauts de ton article."
+    }
+    
+]

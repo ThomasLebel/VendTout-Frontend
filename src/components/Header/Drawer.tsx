@@ -18,6 +18,7 @@ import {
 interface DrawerProps {
   isLogged?: boolean;
   setIsAuthModalOpen: (isAuthModalOpen: boolean) => void;
+  setIsDrawerOpen: (isDrawerOpen: boolean) => void;
 }
 
 interface Category {
@@ -44,8 +45,7 @@ const categories: Category[] = [
   },
 ];
 
-const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
-
+const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) => {
   //Création du dispatch
   const dispatch = useAppDispatch();
 
@@ -57,19 +57,20 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
     dispatch(logout());
   };
 
-
   return (
     <div className="absolute top-0 left-0 w-screen h-screen bg-white flex flex-col items-center z-50">
       {/* Section Boutons */}
       <div className="w-full border-b border-vendtoutGrey border-opacity-20 pb-5">
         <div className="mt-10 w-full px-5">
-          <Button
-            bgColor="bg-mainColor"
-            textColor="text-white"
-            text="Vends tes articles"
-            wfull={true}
-            textSize="text-base"
-          />
+          <Link href="/additem" onClick={() => setIsDrawerOpen(false)}>
+            <Button
+              bgColor="bg-mainColor"
+              textColor="text-white"
+              text="Vends tes articles"
+              wfull={true}
+              textSize="text-base"
+            />
+          </Link>
         </div>
         {!isLogged && (
           <div
@@ -118,7 +119,10 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
             >
               <div className="flex items-center gap-2">
                 <Image
-                  src={user.profilePicture || "https://res.cloudinary.com/dkf48p2ah/image/upload/v1739526042/idkhe6v85woa3fdoszls.jpg"}
+                  src={
+                    user.profilePicture ||
+                    "https://res.cloudinary.com/dkf48p2ah/image/upload/v1739526042/idkhe6v85woa3fdoszls.jpg"
+                  }
                   alt="avatar"
                   width={50}
                   height={50}
@@ -130,7 +134,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
                 </div>
               </div>
             </a>
-            <Link 
+            <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/settings/profile"
             >
@@ -163,7 +167,9 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
             >
               <div className="flex items-center gap-2">
                 <ArrowRightStartOnRectangleIcon className="size-7 text-darkGrey" />
-                <span className="text-base font-medium" onClick={handleLogout}>Se déconnecter</span>
+                <span className="text-base font-medium" onClick={handleLogout}>
+                  Se déconnecter
+                </span>
               </div>
             </a>
           </div>

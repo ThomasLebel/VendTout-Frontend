@@ -7,8 +7,7 @@ import Image from "next/image";
 
 import Header from "@/components/header/Header";
 import Button from "@/components/ui/Button";
-import SettingsSection from "@/components/Settings/SettingsSection";
-
+import SettingsSection from "@/components/settings/SettingsSection";
 
 import { updateUser } from "@/app/redux/slices/userSlice";
 import resizeImage from "@/lib/utils/resizeImage";
@@ -29,40 +28,39 @@ const profile = () => {
   );
   const [country, setCountry] = useState<string>(user.country || "");
   const [city, setCity] = useState<string>(user.city || "");
-  const [file, setFile] = useState<File | null>(null)
+  const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  
   // Fonction pour gérer l'upload de l'image de profil
-  const handleFileChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Récupérer le fichier sélectionné
-    const selectedFile = event.target.files?.[0]
-    if (selectedFile){
-      const imageURL = URL.createObjectURL(selectedFile)
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
+      const imageURL = URL.createObjectURL(selectedFile);
       // Créer un nouvel objet Image
-      const img : HTMLImageElement = document.createElement("img")
-      img.src = imageURL
+      const img: HTMLImageElement = document.createElement("img");
+      img.src = imageURL;
 
       // Attendre que l'image soit chargée avant de la redimensionner
       img.onload = () => {
-        const resizedImage = resizeImage(img, 100, 100)
-        const resizedImageURL = resizedImage.toDataURL("image/jpeg")
-        setProfilePicture(resizedImageURL)
-        setFile(dataURLtoFile(resizedImageURL, "image.jpg"))
-      }
+        const resizedImage = resizeImage(img, 100, 100);
+        const resizedImageURL = resizedImage.toDataURL("image/jpeg");
+        setProfilePicture(resizedImageURL);
+        setFile(dataURLtoFile(resizedImageURL, "image.jpg"));
+      };
     }
-  }
+  };
 
   const handleButtonClick = () => {
-    if(fileInputRef.current){
+    if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
 
   const handleSave = () => {
     const formData = new FormData();
-    if(file){
+    if (file) {
       formData.append("profilePicture", file);
     }
     formData.append("aboutDescription", aboutDescription);
@@ -75,13 +73,13 @@ const profile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.result){
+        if (data.result) {
           dispatch(updateUser(data.userInfos));
         } else {
           setError(data.error);
         }
-      })
-  }
+      });
+  };
 
   return (
     <div>
@@ -90,8 +88,9 @@ const profile = () => {
         <div className="lg:max-w-screen-xl mx-auto lg:flex">
           <SettingsSection />
           <div className="w-screen flex flex-col items-center px-8 lg:pt-32">
-            {/* Avatar utilisateur */}
+            {/* Section photo profil et à propos de toi */}
             <div className="bg-white mt-5 w-full">
+              {/* Avatar utilisateur */}
               <div className="w-full flex justify-between items-center p-6 border-b border-gray-300 pb-8">
                 <span className="text-base font-medium">
                   Ta photo de profil
@@ -106,18 +105,18 @@ const profile = () => {
                   />
                   <input
                     type="file"
-                    accept="image/jpeg, image/png"
+                    accept="image/jpeg, image/jpg, image/png"
                     onChange={handleFileChange}
-                    ref={fileInputRef} // Associe la référence à l'input
-                    style={{ display: "none" }} // Cache l'input
+                    ref={fileInputRef}
+                    style={{ display: "none" }}
                   />
                   <div onClick={handleButtonClick}>
-                  <Button
-                    bgColor="white"
-                    border={true}
-                    textColor="text-mainColor"
-                    text="Choisir une photo"
-                  />
+                    <Button
+                      bgColor="white"
+                      border={true}
+                      textColor="text-mainColor"
+                      text="Choisir une photo"
+                    />
                   </div>
                 </div>
               </div>
@@ -167,9 +166,14 @@ const profile = () => {
                 ></input>
               </div>
             </div>
-            {error && <div className="text-red-500 text-center mt-5">{error}</div>}
+            {error && (
+              <div className="text-red-500 text-center mt-5">{error}</div>
+            )}
             {/* Bouton de sauvegarde des modifications */}
-            <div className="w-full flex justify-end items-center p-6" onClick={handleSave}>
+            <div
+              className="w-full flex justify-end items-center p-6"
+              onClick={handleSave}
+            >
               <Button
                 bgColor="bg-mainColor"
                 textColor="text-white"

@@ -86,6 +86,7 @@ const Header = () => {
                     <li className="relative">
                       <ProfileMenu />
                     </li>
+                    <Link href="/additem">
                     <li className="ml-2">
                       <Button
                         bgColor="bg-mainColor"
@@ -93,6 +94,7 @@ const Header = () => {
                         text="Vends tes articles"
                       />
                     </li>
+                    </Link>
                   </div>
                 </ul>
               )}
@@ -108,11 +110,13 @@ const Header = () => {
                     />
                   </li>
                   <li className="ml-2 hidden lg:block">
+                    <Link href="/additem">
                     <Button
                       bgColor="bg-mainColor"
                       textColor="text-white"
-                      text="Vends tes articles"
-                    />
+                        text="Vends tes articles"
+                      />
+                    </Link>
                   </li>
                   <li className="lg:hidden">
                     {!isDrawerOpen && (
@@ -137,7 +141,7 @@ const Header = () => {
       {/* Menu de navigation pour mobile */}
       {isDrawerOpen && (
         <div className="relative lg:hidden">
-          <Drawer isLogged={isLogged} setIsAuthModalOpen={setIsAuthModalOpen} />
+          <Drawer isLogged={isLogged} setIsAuthModalOpen={setIsAuthModalOpen} setIsDrawerOpen={setIsDrawerOpen}/>
         </div>
       )}
       {/* Barre de recherche pour mobile */}
@@ -147,7 +151,7 @@ const Header = () => {
       {/* Menu de navigation catégories pour desktop */}
       <div className="hidden lg:block border-b border-vendtoutGrey border-opacity-20">
         <div className="max-w-screen-xl mx-auto p-4 w-full h-10 flex items-center gap-8 text-sm ">
-          <p className="text-darkGrey hover:text-mainColor cursor-pointer">
+          <p className="text-darkGrey hover:text-mainColor cursor-pointer ml-5">
             Femmes
           </p>
           <p className="text-darkGrey hover:text-mainColor cursor-pointer">

@@ -1,7 +1,8 @@
 const resizeImage = (
   image: HTMLImageElement,
   width: number,
-  height: number
+  height: number,
+  fill: boolean = true
 ) => {
   // Créer un canvas
   const canvas: HTMLCanvasElement = document.createElement("canvas");
@@ -26,12 +27,14 @@ const resizeImage = (
   }
 
   // Ajuster les dimensions pour remplir le canvas
-  if (drawWidth < width) {
-    drawWidth = width;
-    drawHeight = width / aspectRatio;
-  } else {
-    drawHeight = height;
-    drawWidth = height * aspectRatio;
+  if (fill) {
+    if (drawWidth < width) {
+      drawWidth = width;
+      drawHeight = width / aspectRatio;
+    } else {
+      drawHeight = height;
+      drawWidth = height * aspectRatio;
+    }
   }
 
   // Calculer les coordonnées pour center l'image

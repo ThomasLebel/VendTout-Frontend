@@ -1,5 +1,7 @@
 "use client";
+
 import Button from "../ui/Button";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -14,13 +16,15 @@ const HeroSection = () => {
               Prêts à faire <br />
               du tri dans vos placards ?
             </h1>
-            <Button
-              bgColor="bg-mainColor"
-              textColor="text-white"
-              text="Vends Maintenant"
-              wfull={true}
-              textSize="text-base"
-            />
+            <Link href="/additem">
+              <Button
+                bgColor="bg-mainColor"
+                textColor="text-white"
+                text="Vends Maintenant"
+                wfull={true}
+                textSize="text-base"
+              />
+            </Link>
           </div>
         </div>
         <img
@@ -33,13 +37,15 @@ const HeroSection = () => {
         <h1 className="text-2xl font-semibold mb-5 w-full text-center">
           Prêts à faire du tri dans vos placards ?
         </h1>
-        <Button
-          bgColor="bg-mainColor"
-          textColor="text-white"
-          text="Vends Maintenant"
-          wfull={true}
-          textSize="text-base"
-        />
+        <Link href="/additem">
+          <Button
+            bgColor="bg-mainColor"
+            textColor="text-white"
+            text="Vends Maintenant"
+            wfull={true}
+            textSize="text-base"
+          />
+        </Link>
       </div>
     </section>
   );
