@@ -29,7 +29,11 @@ const profile = () => {
   const [country, setCountry] = useState<string>(user.country || "");
   const [city, setCity] = useState<string>(user.city || "");
   const [file, setFile] = useState<File | null>(null);
+  
+
   const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
+  
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Fonction pour gérer l'upload de l'image de profil
@@ -75,8 +79,11 @@ const profile = () => {
       .then((data) => {
         if (data.result) {
           dispatch(updateUser(data.userInfos));
+          setSuccess("Modifications enregistrées avec succès");
+          setError("");
         } else {
           setError(data.error);
+          setSuccess("");
         }
       });
   };
@@ -168,6 +175,9 @@ const profile = () => {
             </div>
             {error && (
               <div className="text-red-500 text-center mt-5">{error}</div>
+            )}
+            {success && (
+              <div className="text-green-500 text-center mt-5">{success}</div>
             )}
             {/* Bouton de sauvegarde des modifications */}
             <div

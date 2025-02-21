@@ -3,7 +3,7 @@
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
 
 import { useState } from "react";
-import Button from "../ui/Button";
+import Button from "@/components/ui/Button";
 import Image from "next/image";
 
 import resizeImage from "@/lib/utils/resizeImage";

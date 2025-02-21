@@ -40,6 +40,9 @@ const ChangeMailModal = ({
           if (data.result) {
             dispatch(updateUser(data.userInfos));
             setIsOpen(false);
+            setNewEmail("");
+            setPassword("");
+            setError("");
           } else {
             setError(data.error);
           }

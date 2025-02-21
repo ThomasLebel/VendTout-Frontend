@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useAppSelector } from "@/app/redux/store";
 
 import Button from "@/components/ui/Button";
 import Header from "@/components/header/Header";
-import ImageUploader from "@/components/additems/ImageUploader";
+import ImageUploader from "@/components/items/additems/ImageUploader";
 import CategoriesSelectorModal from "@/components/ui/CategoriesSelectorModal";
 import SizeModal from "@/components/ui/SizeModal";
 import ColorModal from "@/components/ui/ColorModal";
@@ -14,15 +15,20 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const addItem = () => {
 
+  const user = useAppSelector((state) => state.user.value);
+
   const [photos, setPhotos] = useState<File[]>([]);
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [selectedGender, setSelectedGender] = useState<string>("");
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>("");
+  const [brand, setBrand] = useState<string>("");
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [selectedCondition, setSelectedCondition] = useState<string>("");
   const [price, setPrice] = useState<string>("");
+
+  const [error, setError] = useState<string>("");
 
   const [isCategoriesSelectorOpen, setIsCategoriesSelectorOpen] =
     useState<boolean>(false);
@@ -51,15 +57,50 @@ const addItem = () => {
   };
 
   const handlePublishItem = () => {
-    console.log("Title : ", title);
-    console.log("Description : ", description);
-    console.log("Selected Gender : ", selectedGender);
-    console.log("Selected Sub Category : ", selectedSubCategory);
-    console.log("Selected Size : ", selectedSize);
-    console.log("Selected Color : ", selectedColor);
-    console.log("Selected Condition : ", selectedCondition);
-    console.log("Price : ", price);
-    console.log("Photos : ", photos);
+    if (
+      photos.length === 0 ||
+      title === "" ||
+      description === "" ||
+      selectedGender === "" ||
+      selectedSubCategory === "" ||
+      brand === "" ||
+      selectedSize === "" ||
+      selectedColor === "" ||
+      selectedCondition === "" ||
+      price === ""
+    ) {
+      setError("Veuillez ajouter au moins une photo et remplir tous les champs");
+    } else {
+      setError("");
+      const formData = new FormData();
+      formData.append("token", user.token || "");
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("gender", selectedGender);
+      formData.append("subCategory", selectedSubCategory);
+      formData.append("brand", brand);
+      formData.append("size", selectedSize);
+      formData.append("condition", selectedCondition);
+      formData.append("color", selectedColor);
+      formData.append("price", price);
+      for (let photo of photos) {
+        formData.append("photos", photo);
+      }
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/addItem`, {
+        method: "POST",
+        body: formData,
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result) {
+          console.log(data)
+        } else {
+          setError(data.error);
+        }
+      });
+      
+      
+    }
   };
 
   return (
@@ -76,7 +117,7 @@ const addItem = () => {
           <div className=" w-full rounded-md p-4 flex flex-col gap-6 ">
             {/* Section upload de photos */}
             <div className="bg-white w-full p-5 rounded-md border border-gray-200">
-              <ImageUploader setPhotos={setPhotos} photos={photos}/>
+              <ImageUploader setPhotos={setPhotos} photos={photos} />
             </div>
             {/* Section Titre et description */}
             <div className="bg-white w-full rounded-md border border-gray-200">
@@ -154,6 +195,8 @@ const addItem = () => {
                       type="text"
                       placeholder="Saisis une marque"
                       className="border-b border-gray-200 py-2 outline-none md:w-3/6"
+                      value={brand}
+                      onChange={(e) => setBrand(e.target.value)}
                     ></input>
                   </div>
 
@@ -273,6 +316,9 @@ const addItem = () => {
             </div>
 
             {/* Section Bouton */}
+            {error && (
+              <span className="text-red-500 text-sm text-center">{error}</span>
+            )}
             <div className="w-full flex justify-end">
               <div className="w-full md:w-[150px]" onClick={handlePublishItem}>
                 <Button
@@ -284,7 +330,6 @@ const addItem = () => {
                 />
               </div>
             </div>
-
           </div>
         </div>
       </div>

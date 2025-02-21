@@ -27,7 +27,7 @@ const resizeImage = (
   }
 
   // Ajuster les dimensions pour remplir le canvas
-  if (fill) {
+
     if (drawWidth < width) {
       drawWidth = width;
       drawHeight = width / aspectRatio;
@@ -35,7 +35,7 @@ const resizeImage = (
       drawHeight = height;
       drawWidth = height * aspectRatio;
     }
-  }
+  
 
   // Calculer les coordonnées pour center l'image
   const xOffset: number = (width - drawWidth) / 2;

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useAppSelector } from "@/app/redux/store";
+import { useAppSelector, useAppDispatch } from "@/app/redux/store";
+import { updateUser } from "@/app/redux/slices/userSlice";
 
 import Header from "@/components/header/Header";
 import Button from "@/components/ui/Button";
@@ -12,11 +13,15 @@ import DeleteAccountModal from "@/components/settings/userinfos/DeleteAccountMod
 const profile = () => {
   //Récupération de l'utilisateur
   const user = useAppSelector((state) => state.user.value);
+  const dispatch = useAppDispatch();
 
   //Déclaration des états
   const [fullName, setFullName] = useState<string>(user.fullName || "");
   const [gender, setGender] = useState<string>(user.gender || "");
   const [birthDate, setBirthDate] = useState<string>(user.birthDate || "");
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
+
   const [isChangeMailModalOpen, setIsChangeMailModalOpen] = useState<boolean>(false);
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState<boolean>(false);
 
@@ -43,7 +48,14 @@ const profile = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        if (data.result) {
+          dispatch(updateUser(data.userInfos));
+          setSuccess("Modifications enregistrées avec succès");
+          setError("");
+        } else {
+          setSuccess("");
+          setError(data.error);
+        }
       });
   };
 
@@ -143,6 +155,12 @@ const profile = () => {
             />
 
             {/* Bouton de sauvegarde des modifications */}
+            {error && (
+              <span className="text-red-500 text-sm text-center mt-5">{error}</span>
+            )}
+            {success && (
+              <span className="text-green-500 text-sm text-center mt-5">{success}</span>
+            )}
             <div
               className="w-full flex justify-end items-center p-6"
               onClick={handleSave}
