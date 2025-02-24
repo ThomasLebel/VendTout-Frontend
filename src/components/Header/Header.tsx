@@ -21,7 +21,6 @@ import Drawer from "./Drawer";
 import AuthModal from "./AuthModal";
 
 const Header = () => {
-
   const user = useAppSelector((state) => state.user.value);
 
   const [isLogged, setIsLogged] = useState<boolean>(false);
@@ -35,7 +34,6 @@ const Header = () => {
   }, [user.token]);
 
   return (
-    
     <div className="fixed top-0 left-0 right-0 z-10 bg-white">
       {/* Barre de navigation */}
       <header className="relative">
@@ -43,9 +41,15 @@ const Header = () => {
         <div className="border-b border-vendtoutGrey border-opacity-20">
           <div className="max-w-screen-xl mx-auto flex justify-between items-center p-4 ">
             <Link href="/">
-              <Image src="/images/logo-vendtout.png" alt="VendTout" width={150} height={42} priority={true}/>
+              <Image
+                src="/images/logo-vendtout.png"
+                alt="VendTout"
+                width={150}
+                height={42}
+                priority={true}
+              />
             </Link>
-            {/* Barre de recherche */} 
+            {/* Barre de recherche */}
             <div className="hidden lg:block w-3/6">
               <SearchBar id="desktop-searchbar" />
             </div>
@@ -60,10 +64,12 @@ const Header = () => {
                   <li>
                     <BellIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
                   </li>
-                  <li>
-                    <HeartIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
-                  </li>
-                  
+                  <Link href="/favourite_list">
+                    <li>
+                      <HeartIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
+                    </li>
+                  </Link>
+
                   {/* Icône de menu pour mobile */}
                   <li className="lg:hidden">
                     {!isDrawerOpen && (
@@ -86,14 +92,14 @@ const Header = () => {
                     <li className="relative">
                       <ProfileMenu />
                     </li>
-                    <Link href="/additem">
-                    <li className="ml-2">
-                      <Button
-                        bgColor="bg-mainColor"
-                        textColor="text-white"
-                        text="Vends tes articles"
-                      />
-                    </li>
+                    <Link href="/items/additem">
+                      <li className="ml-2">
+                        <Button
+                          bgColor="bg-mainColor"
+                          textColor="text-white"
+                          text="Vends tes articles"
+                        />
+                      </li>
                     </Link>
                   </div>
                 </ul>
@@ -101,7 +107,10 @@ const Header = () => {
               {/* Affichage des boutons si l'utilisateur n'est pas connecté */}
               {!isLogged && (
                 <ul className="flex gap-2 items-center">
-                  <li className="ml-2 hidden lg:block" onClick={() => setIsAuthModalOpen(true)}>
+                  <li
+                    className="ml-2 hidden lg:block"
+                    onClick={() => setIsAuthModalOpen(true)}
+                  >
                     <Button
                       bgColor="bg-white"
                       textColor="text-mainColor"
@@ -110,10 +119,10 @@ const Header = () => {
                     />
                   </li>
                   <li className="ml-2 hidden lg:block">
-                    <Link href="/additem">
-                    <Button
-                      bgColor="bg-mainColor"
-                      textColor="text-white"
+                    <Link href="/items/additem">
+                      <Button
+                        bgColor="bg-mainColor"
+                        textColor="text-white"
                         text="Vends tes articles"
                       />
                     </Link>
@@ -141,7 +150,11 @@ const Header = () => {
       {/* Menu de navigation pour mobile */}
       {isDrawerOpen && (
         <div className="relative lg:hidden">
-          <Drawer isLogged={isLogged} setIsAuthModalOpen={setIsAuthModalOpen} setIsDrawerOpen={setIsDrawerOpen}/>
+          <Drawer
+            isLogged={isLogged}
+            setIsAuthModalOpen={setIsAuthModalOpen}
+            setIsDrawerOpen={setIsDrawerOpen}
+          />
         </div>
       )}
       {/* Barre de recherche pour mobile */}
@@ -163,7 +176,10 @@ const Header = () => {
         </div>
       </div>
       {/* Modal de connexion */}
-      <AuthModal isAuthModalOpen={isAuthModalOpen} setIsAuthModalOpen={setIsAuthModalOpen} />
+      <AuthModal
+        isAuthModalOpen={isAuthModalOpen}
+        setIsAuthModalOpen={setIsAuthModalOpen}
+      />
     </div>
   );
 };

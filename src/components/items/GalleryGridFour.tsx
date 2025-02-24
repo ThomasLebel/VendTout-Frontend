@@ -15,7 +15,7 @@ const GalleryGridFour = ({
         <Image
           src={photos[0]}
           alt="product"
-          className="w-full object-cover p-[1px] rounded-lg"
+          className="w-full object-cover p-[1px] rounded-lg cursor-pointer"
           width={1000}
           height={1500}
           onClick={() => {
@@ -29,7 +29,7 @@ const GalleryGridFour = ({
           <Image
             src={photos[1]}
             alt="product"
-            className="w-full h-full object-cover p-[1px] rounded-lg"
+            className="w-full h-full object-cover p-[1px] rounded-lg cursor-pointer"
             width={1000}
             height={1500}
             onClick={() => {
@@ -40,7 +40,7 @@ const GalleryGridFour = ({
           <Image
             src={photos[2]}
             alt="product"
-            className="w-full h-full object-cover p-[1px] rounded-lg"
+            className="w-full h-full object-cover p-[1px] rounded-lg cursor-pointer"
             width={1000}
             height={1500}
             onClick={() => {
@@ -53,7 +53,7 @@ const GalleryGridFour = ({
           <Image
             src={photos[3]}
             alt="product"
-            className="w-full h-full object-cover p-[1px] rounded-lg"
+            className="w-full h-full object-cover p-[1px] rounded-lg cursor-pointer"
             width={1000}
             height={1500}
             onClick={() => {
@@ -65,7 +65,7 @@ const GalleryGridFour = ({
             <Image
               src={photos[4]}
               alt="product"
-              className="w-full h-full object-cover p-[1px] rounded-lg"
+              className="w-full h-full object-cover p-[1px] rounded-lg cursor-pointer"
               width={1000}
               height={1500}
               onClick={() => {

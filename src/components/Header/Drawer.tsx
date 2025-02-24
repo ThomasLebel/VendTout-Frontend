@@ -62,7 +62,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
       {/* Section Boutons */}
       <div className="w-full border-b border-vendtoutGrey border-opacity-20 pb-5">
         <div className="mt-10 w-full px-5">
-          <Link href="/additem" onClick={() => setIsDrawerOpen(false)}>
+          <Link href="/items/additem" onClick={() => setIsDrawerOpen(false)}>
             <Button
               bgColor="bg-mainColor"
               textColor="text-white"

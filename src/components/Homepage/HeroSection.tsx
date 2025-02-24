@@ -16,7 +16,7 @@ const HeroSection = () => {
               Prêts à faire <br />
               du tri dans vos placards ?
             </h1>
-            <Link href="/additem">
+            <Link href="items/additem">
               <Button
                 bgColor="bg-mainColor"
                 textColor="text-white"
