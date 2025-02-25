@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useAppSelector } from "@/app/redux/store";
+import { useRouter } from "next/navigation";
 
 import Button from "@/components/ui/Button";
 import Header from "@/components/header/Header";
@@ -16,6 +17,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 const addItem = () => {
 
   const user = useAppSelector((state) => state.user.value);
+  const router = useRouter();
 
   const [photos, setPhotos] = useState<File[]>([]);
   const [title, setTitle] = useState<string>("");
@@ -28,6 +30,7 @@ const addItem = () => {
   const [selectedCondition, setSelectedCondition] = useState<string>("");
   const [price, setPrice] = useState<string>("");
 
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
   const [isCategoriesSelectorOpen, setIsCategoriesSelectorOpen] =
@@ -57,6 +60,7 @@ const addItem = () => {
   };
 
   const handlePublishItem = () => {
+    setLoading(true);
     if (
       photos.length === 0 ||
       title === "" ||
@@ -70,6 +74,7 @@ const addItem = () => {
       price === ""
     ) {
       setError("Veuillez ajouter au moins une photo et remplir tous les champs");
+      setLoading(false);
     } else {
       setError("");
       const formData = new FormData();
@@ -93,13 +98,13 @@ const addItem = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.result) {
-          console.log(data)
+          setLoading(false);
+          router.push(`/member/${user.username}`);
         } else {
           setError(data.error);
+          setLoading(false);
         }
       });
-      
-      
     }
   };
 
@@ -327,6 +332,7 @@ const addItem = () => {
                   textColor="text-white"
                   textSize="text-base"
                   wfull={true}
+                  loading={loading}
                 />
               </div>
             </div>

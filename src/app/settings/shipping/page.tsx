@@ -20,7 +20,7 @@ const shipping = () => {
   return (
     <div>
       <Header />
-      <div className="bg-lightGrey h-screen">
+      <div className="bg-lightGrey min-h-screen">
         <div className="lg:max-w-screen-xl mx-auto lg:flex">
           <SettingsSection />
           <div className="w-screen flex flex-col items-center px-8 lg:pt-32">

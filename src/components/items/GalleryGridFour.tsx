@@ -61,6 +61,7 @@ const GalleryGridFour = ({
               setCurrentIndex(3);
             }}
           />
+          <div className="relative w-full h-full rounded-lg">
           {photos[4] && (
             <Image
               src={photos[4]}
@@ -74,6 +75,21 @@ const GalleryGridFour = ({
               }}
             />
           )}
+          {photos.length > 5 && (
+            <div
+              className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 flex justify-center items-center rounded-lg cursor-pointer"
+              onClick={() => {
+                setIsOpenLightbox(true);
+                setCurrentIndex(4);
+              }}
+            >
+              <span className="text-white font-medium">{`+ ${
+                photos.length - 5
+              }`}</span>
+            </div>
+          )}
+          </div>
+          
         </div>
       </div>
     </div>

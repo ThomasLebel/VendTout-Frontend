@@ -10,6 +10,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 const ProfileMenu = () => {
 
+
   //Création du dispatch
   const dispatch = useAppDispatch();
 
@@ -37,7 +38,7 @@ const ProfileMenu = () => {
       </MenuButton>
       <MenuItems anchor="bottom end" className="w-96 shadow-md mt-5 rounded-sm p-1 bg-white z-20">
         <MenuItem>
-          <a className="p-3 block data-[focus]:bg-Grey" href="/">
+          <Link className="p-3 block data-[focus]:bg-Grey" href={`/member/${user.username}`}>
             <div className="flex items-center gap-2">
               <Image
                 src={user.profilePicture || "https://res.cloudinary.com/dkf48p2ah/image/upload/v1739526042/idkhe6v85woa3fdoszls.jpg"}
@@ -51,7 +52,7 @@ const ProfileMenu = () => {
                 <p className="text-base text-darkGrey">Voir mon profil</p>
               </div>
             </div>
-          </a>
+          </Link>
         </MenuItem>
         <MenuItem>
           <Link className="mt-2 p-3 block data-[focus]:bg-lightGrey" href="/settings/profile">

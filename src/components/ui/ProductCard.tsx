@@ -73,7 +73,7 @@ const ProductCard = ({product}: {product: ProductType}) => {
         />
         <div className="absolute bottom-0 right-0 p-2 m-2 bg-white rounded-full flex items-center gap-1" onClick={handleLike}>
           {heartIcon}
-          <span className="text-xs text-darkGrey">{nbLikes}</span>
+          {nbLikes > 0 && <span className="text-xs text-darkGrey">{nbLikes}</span>}
         </div>
       </div>
       {/* Section marque et taille*/}
