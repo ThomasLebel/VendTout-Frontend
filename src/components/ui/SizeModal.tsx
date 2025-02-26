@@ -56,6 +56,12 @@ const SizeModal = ({
     sizesToDisplay = sizesSelected[0].sizes;
   }
 
+  const handleValidate = () => {
+    if(selectedSize){
+      setIsOpen(false)
+    }
+  }
+
   return (
     <div className="relative">
       <Dialog
@@ -88,7 +94,7 @@ const SizeModal = ({
                 ))}
               </div>
             </div>
-            <div className="w-full1 p-4" onClick={() => setIsOpen(false)}>
+            <div className="w-full1 p-4" onClick={handleValidate}>
               <Button
                 bgColor={selectedSize ? "bg-mainColor" : "bg-gray-200"}
                 textColor="text-white"

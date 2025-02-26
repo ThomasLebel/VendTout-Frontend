@@ -1,12 +1,20 @@
 import { ShieldCheckIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Button from "../ui/Button";
+import DeleteProductModal from "../member/DeleteProductModal";
 import { ProductType } from "@/types/ProductType";
 import moment from "moment";
 import "moment/locale/fr";
 
-const ItemInformations = ({ product }: { product: ProductType }) => {
-  const [showMore, setShowMore] = useState(false);
+const ItemInformations = ({ product, ownProduct }: { product: ProductType, ownProduct: boolean }) => {
+
+  const [openDeleteProductModal, setOpenDeleteProductModal] = useState<boolean>(false)
+ 
+
+  {/* Fonction pour supprimer un produit */}
+  const handleDeleteProduct = () => {
+    setOpenDeleteProductModal(true)
+  }
 
   return (
     <div className="border border-gray-200 rounded-lg p-4">
@@ -93,17 +101,9 @@ const ItemInformations = ({ product }: { product: ProductType }) => {
       {/* Section Description */}
       <div className="mt-4 flex flex-col gap-2 border-b border-gray-200 pb-4 ">
         <span
-          className={`text-darkGrey  whitespace-pre-line ${
-            !showMore && "max-h-[78px] overflow-hidden"
-          }`}
+          className={`text-darkGrey whitespace-pre-line`}
         >
           {product.description}
-        </span>
-        <span
-          className="text-mainColor text-sm cursor-pointer"
-          onClick={() => setShowMore(!showMore)}
-        >
-          {showMore ? "... moins" : "... plus"}
         </span>
       </div>
 
@@ -113,6 +113,8 @@ const ItemInformations = ({ product }: { product: ProductType }) => {
         <span className="text-darkGrey text-sm">à partir de 3,89 €</span>
       </div>
 
+      {/* Affichage des boutons si le produit n'appartient pas à l'utilisateur connecté */}
+      {!ownProduct && <>
       {/* Bouton acheter */}
       <div className="mt-6 flex justify-center">
         <Button
@@ -147,6 +149,22 @@ const ItemInformations = ({ product }: { product: ProductType }) => {
           textSize="text-base"
         />
       </div>
+      </>}
+
+      {/* Bouton supprimer si le propriétaire est connecté */}
+      { ownProduct && <div className="mt-4 flex justify-center" onClick={handleDeleteProduct}>
+        <Button
+          bgColor="bg-white"
+          textColor="text-red-500"
+          border={true}
+          borderColor="border-red-500"
+          text="Supprimer"
+          textSize="text-sm"
+          wfull={true}
+        />
+      <DeleteProductModal isOpen={openDeleteProductModal} setIsOpen={setOpenDeleteProductModal} productID={product._id} fromShowItem={true}/>
+      </div>}
+
     </div>
   );
 };

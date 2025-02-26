@@ -71,7 +71,7 @@ const ProductCard = ({product}: {product: ProductType}) => {
           className="w-full h-full object-cover rounded-lg cursor-pointer"
           onClick={handleItemClick}
         />
-        <div className="absolute bottom-0 right-0 p-2 m-2 bg-white rounded-full flex items-center gap-1" onClick={handleLike}>
+        <div className="absolute bottom-0 right-0 p-2 m-2 bg-white rounded-full flex items-center gap-1 cursor-pointer" onClick={handleLike}>
           {heartIcon}
           {nbLikes > 0 && <span className="text-xs text-darkGrey">{nbLikes}</span>}
         </div>

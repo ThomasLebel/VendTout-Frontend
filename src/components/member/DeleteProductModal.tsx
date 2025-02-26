@@ -15,15 +15,17 @@ import { logout } from "@/app/redux/slices/userSlice";
 const DeleteProductModal = ({
   isOpen,
   setIsOpen,
-  refresh,
-  setRefresh,
+  refresh = false,
+  setRefresh = () => {},
   productID,
+  fromShowItem = false
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  refresh : boolean,
-  setRefresh: (refresh: boolean) => void;
+  refresh? : boolean,
+  setRefresh?: (refresh: boolean) => void;
   productID: string;
+  fromShowItem? : boolean
 }) => {
 
   const router = useRouter();
@@ -51,6 +53,9 @@ const DeleteProductModal = ({
             setLoading(false)
             setIsOpen(false);
             setRefresh(!refresh)
+            if (fromShowItem){
+              router.push(`/member/${user.username}`)
+            }
         } else {
             setLoading(false)
             setError(data.error);
@@ -91,7 +96,7 @@ const DeleteProductModal = ({
                 loading={loading}
               />
               </div>
-              <div onClick={() => setRefresh(!refresh)}>
+              <div onClick={() => setIsOpen(false)}>
               <Button
                 bgColor="bg-white"
                 border={true}

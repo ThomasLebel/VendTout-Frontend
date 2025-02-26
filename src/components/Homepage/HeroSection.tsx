@@ -1,9 +1,28 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/app/redux/store";
+
 import Button from "../ui/Button";
 import Link from "next/link";
+import AuthModal from "../header/AuthModal";
 
 const HeroSection = () => {
+
+  const [openAuthModal, setOpenAuthModal] = useState<boolean>(false);
+
+  const router = useRouter()
+  const user = useAppSelector((state) => state.user.value);
+
+  const handleSellNow = () => {
+    if (user.token) {
+      router.push(`/items/additem`);
+    } else {
+      setOpenAuthModal(true);
+    }
+  }
+
   return (
     <section className="mt-24">
       <div
@@ -16,7 +35,7 @@ const HeroSection = () => {
               Prêts à faire <br />
               du tri dans vos placards ?
             </h1>
-            <Link href="items/additem">
+            <div onClick={handleSellNow}>
               <Button
                 bgColor="bg-mainColor"
                 textColor="text-white"
@@ -24,7 +43,7 @@ const HeroSection = () => {
                 wfull={true}
                 textSize="text-base"
               />
-            </Link>
+            </div>
           </div>
         </div>
         <img
@@ -47,6 +66,7 @@ const HeroSection = () => {
           />
         </Link>
       </div>
+      <AuthModal isAuthModalOpen={openAuthModal} setIsAuthModalOpen={setOpenAuthModal}/>
     </section>
   );
 };

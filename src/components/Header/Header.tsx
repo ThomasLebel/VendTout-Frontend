@@ -5,6 +5,7 @@ import { useAppSelector } from "@/app/redux/store";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import {
   EnvelopeIcon,
@@ -21,6 +22,8 @@ import Drawer from "./Drawer";
 import AuthModal from "./AuthModal";
 
 const Header = () => {
+  
+  const router = useRouter()
   const user = useAppSelector((state) => state.user.value);
 
   const [isLogged, setIsLogged] = useState<boolean>(false);
@@ -32,6 +35,14 @@ const Header = () => {
       setIsLogged(true);
     }
   }, [user.token]);
+
+  const handleSellNow = () => {
+    if (user.token) {
+      router.push(`/items/additem`);
+    } else {
+      setIsAuthModalOpen(true);
+    }
+  }
 
   return (
     <div className="fixed top-0 left-0 right-0 z-10 bg-white">
@@ -92,7 +103,7 @@ const Header = () => {
                     <li className="relative">
                       <ProfileMenu />
                     </li>
-                    <Link href="/items/additem">
+                    <div onClick={handleSellNow}>
                       <li className="ml-2">
                         <Button
                           bgColor="bg-mainColor"
@@ -100,7 +111,7 @@ const Header = () => {
                           text="Vends tes articles"
                         />
                       </li>
-                    </Link>
+                    </div>
                   </div>
                 </ul>
               )}
@@ -119,13 +130,13 @@ const Header = () => {
                     />
                   </li>
                   <li className="ml-2 hidden lg:block">
-                    <Link href="/items/additem">
+                    <div onClick={handleSellNow}>
                       <Button
                         bgColor="bg-mainColor"
                         textColor="text-white"
                         text="Vends tes articles"
                       />
-                    </Link>
+                    </div>
                   </li>
                   <li className="lg:hidden">
                     {!isDrawerOpen && (
@@ -164,15 +175,21 @@ const Header = () => {
       {/* Menu de navigation catégories pour desktop */}
       <div className="hidden lg:block border-b border-vendtoutGrey border-opacity-20">
         <div className="max-w-screen-xl mx-auto p-4 w-full h-10 flex items-center gap-8 text-sm ">
+          <Link href='/catalog?gender=Femme'>
           <p className="text-darkGrey hover:text-mainColor cursor-pointer ml-5">
             Femmes
           </p>
+          </Link>
+          <Link href='/catalog?gender=Homme'>
           <p className="text-darkGrey hover:text-mainColor cursor-pointer">
             Hommes
           </p>
+          </Link>
+          <Link href='/catalog?gender=Enfants'>
           <p className="text-darkGrey hover:text-mainColor cursor-pointer">
             Enfants
           </p>
+          </Link>
         </div>
       </div>
       {/* Modal de connexion */}

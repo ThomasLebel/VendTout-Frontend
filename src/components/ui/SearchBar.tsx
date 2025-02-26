@@ -6,7 +6,9 @@ import {
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/react";
+
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   ChevronDownIcon,
@@ -25,8 +27,22 @@ const options: Option[] = [
 
 const SearchBar = ({id}: {id: string}) => {
 
+  const router = useRouter();
+
   const [selectedOption, setSelectedOption] = useState<Option>(options[0]);
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (selectedOption.name === "Articles"){
+        router.push(`/catalog?search=${searchQuery}`);
+      } else {
+        router.push(`/member/search?username=${searchQuery}`);
+      }
+    }
+  };
 
 
   return (
@@ -61,6 +77,7 @@ const SearchBar = ({id}: {id: string}) => {
           className="ml-2 w-full bg-transparent outline-none text-sm"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </div>
     </div>

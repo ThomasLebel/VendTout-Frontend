@@ -8,10 +8,12 @@ import { ProductType } from "@/types/ProductType";
 
 const PostedProductsFeed = ({
   products,
+  ownProfile,
   refresh = false,
   setRefresh = () => {},
 }: {
   products: ProductType[];
+  ownProfile?: boolean;
   refresh? : boolean,
   setRefresh?: (refresh: boolean) => void;
 }) => {
@@ -23,8 +25,8 @@ const PostedProductsFeed = ({
     <div className="mt-5">
       <h1 className="font-medium mb-5">
         {products.length > 1
-          ? `${products.length} articles`
-          : `${products.length} article`}
+          ? `${products.length} articles disponibles`
+          : `${products.length} article disponible`}
       </h1>
       <div className="flex flex-wrap justify-start ">
         {products.map((product) => (
@@ -32,21 +34,23 @@ const PostedProductsFeed = ({
             key={product._id}
             className="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2"
           >
-            <OwnerProductCard
+            {!ownProfile ? (<ProductCard
+              product={product}
+            />) : (<OwnerProductCard
               product={product}
               setOpenDeleteProductModal={setOpenDeleteProductModal}
               setProductID={setProductID}
-            />
+            />)}
           </div>
         ))}
       </div>
-      <DeleteProductModal
+      {ownProfile && <DeleteProductModal
         isOpen={openDeleteProductModal}
         setIsOpen={setOpenDeleteProductModal}
         productID={productID}
         refresh={refresh}
         setRefresh={setRefresh}
-      />
+      />}
     </div>
   );
 };

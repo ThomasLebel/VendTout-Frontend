@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/app/redux/store";
 import { logout } from "@/app/redux/slices/userSlice";
 
@@ -46,6 +47,9 @@ const categories: Category[] = [
 ];
 
 const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) => {
+
+  const router = useRouter()
+
   //Création du dispatch
   const dispatch = useAppDispatch();
 
@@ -57,12 +61,20 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
     dispatch(logout());
   };
 
+  const handleSellNow = () => {
+    if (user.token) {
+      router.push(`/items/additem`);
+    } else {
+      setIsAuthModalOpen(true);
+    }
+  }
+
   return (
     <div className="absolute top-0 left-0 w-screen h-screen bg-white flex flex-col items-center z-50">
       {/* Section Boutons */}
       <div className="w-full border-b border-vendtoutGrey border-opacity-20 pb-5">
         <div className="mt-10 w-full px-5">
-          <Link href="/items/additem" onClick={() => setIsDrawerOpen(false)}>
+          <div onClick={handleSellNow}>
             <Button
               bgColor="bg-mainColor"
               textColor="text-white"
@@ -70,7 +82,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
               wfull={true}
               textSize="text-base"
             />
-          </Link>
+          </div>
         </div>
         {!isLogged && (
           <div

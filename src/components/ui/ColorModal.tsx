@@ -30,6 +30,13 @@ const ColorModal = ({
   selectedColor: string;
   setSelectedColor: (selectedColor: string) => void;
 }) => {
+
+  const handleValidate = () => {
+    if(selectedColor){
+      setIsOpen(false)
+    }
+  }
+
   return (
     <div className="relative">
       <Dialog
@@ -66,7 +73,7 @@ const ColorModal = ({
                 ))}
               </div>
             </div>
-            <div className="w-full p-4" onClick={() => setIsOpen(false)}>
+            <div className="w-full p-4" onClick={handleValidate}>
               <Button
                 bgColor={selectedColor === "" ? "bg-gray-200" : "bg-mainColor"}
                 textColor="text-white"

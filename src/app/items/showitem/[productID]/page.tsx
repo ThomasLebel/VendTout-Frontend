@@ -30,6 +30,7 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
 
   const [product, setProduct] = useState<ProductType>(ProductDefaultValues);
   const [otherProducts, setOtherProducts] = useState<ProductType[]>([]);
+  const [ownProduct, setOwnProduct] = useState<boolean>(false);
   const [isOpenLightbox, setIsOpenLightbox] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nbLikes, setNbLikes] = useState(0);
@@ -42,6 +43,9 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.result) {
+          if (data.productInfos.userID.username === user.username) {
+            setOwnProduct(true);
+          }
           setProduct(data.productInfos);
           setNbLikes(data.productInfos.nbLikes);
           fetch(
@@ -50,7 +54,11 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
             .then((res) => res.json())
             .then((data) => {
               if (data.result) {
-                setOtherProducts(data.products.filter((product : ProductType) => product._id !== productID));
+                setOtherProducts(
+                  data.products.filter(
+                    (product: ProductType) => product._id !== productID
+                  )
+                );
               }
             });
         }
@@ -58,7 +66,7 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [user]);
 
   const handleLike = () => {
     if (!user.token) {
@@ -133,34 +141,40 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
   }
 
   return (
-    <div className="relative">
+    <div>
       <Header />
-      <div className="h-screen max-w-screen-xl mx-auto p-2 flex flex-col lg:justify-between lg:flex-row">
+      <div className="max-w-screen-xl mx-auto p-2 flex flex-col lg:justify-between lg:flex-row">
         {/* Section Gallerie Photo */}
-        <div className="mt-32 h-[40%] md:h-[60%] lg:h-[70%] w-full lg:w-4/6 relative">
-          {GalleryGrid}
-          <div
-            className="absolute bottom-5 right-4 px-3 py-2 rounded-full bg-lightGrey flex justify-center items-center cursor-pointer"
-            onClick={handleLike}
-          >
-            {heartIcon}
-            {nbLikes > 0 && (
-              <span className="text-darkGrey ml-1">{nbLikes}</span>
-            )}
+        <div className="w-full ">
+          <div className="mt-32 h-[400px] md:h-[550px] lg:h-[600px] w-full lg:w-[95%] relative">
+            {GalleryGrid}
+            <div
+              className="absolute bottom-5 right-4 px-3 py-2 rounded-full bg-lightGrey flex justify-center items-center cursor-pointer"
+              onClick={handleLike}
+            >
+              {heartIcon}
+              {nbLikes > 0 && (
+                <span className="text-darkGrey ml-1">{nbLikes}</span>
+              )}
+            </div>
           </div>
+          {/* Section autres produits en vente affiché sur desktop */}
           <div className="hidden lg:block">
-          <PostedProductsFeed products={otherProducts} />
+            <PostedProductsFeed products={otherProducts} />
           </div>
         </div>
+
         {/* Section Description */}
-        <div className="w-full mt-3 px-2 lg:mt-32 lg:w-[30%]">
-          <ItemInformations product={product} />
+        <div className="w-full mt-3 px-2 lg:mt-32 lg:w-[40%]">
+          <ItemInformations product={product} ownProduct={ownProduct} />
           <SellerInformations product={product} />
+          {/* Section autres produits en vente affiché sur mobile */}
           <div className=" lg:hidden">
-          <PostedProductsFeed products={otherProducts} />
+            <PostedProductsFeed products={otherProducts} />
           </div>
         </div>
       </div>
+      <div className="w-full h-96 bg-pink-200"></div>
       {/* Lightbox */}
       {isOpenLightbox && (
         <Lightbox
