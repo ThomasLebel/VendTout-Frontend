@@ -125,9 +125,9 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
         {isLogged && (
           <div className="mt-10 w-full px-5">
             <h2 className="text-darkGrey text-sm mb-5">Mon Compte</h2>
-            <a
+            <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
-              href="/"
+              href={`/member/${user.username}`}
             >
               <div className="flex items-center gap-2">
                 <Image
@@ -145,7 +145,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
                   <p className="text-base text-darkGrey">Voir mon profil</p>
                 </div>
               </div>
-            </a>
+            </Link>
             <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/settings/profile"

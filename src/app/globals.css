@@ -13,3 +13,11 @@ body {
   background: var(--background);
   font-family: Inter,Arial, Helvetica, sans-serif;
 }
+
+.footerTitle {
+  @apply text-darkGrey text-lg
+}
+
+.footerLink {
+  @apply text-darkGrey text-[15px] cursor-pointer hover:underline
+}

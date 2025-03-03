@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from "@/app/redux/store";
 import Image from "next/image";
 
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 import Button from "@/components/ui/Button";
 import SettingsSection from "@/components/settings/SettingsSection";
 
@@ -33,6 +34,7 @@ const profile = () => {
 
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false)
   
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -63,6 +65,7 @@ const profile = () => {
   };
 
   const handleSave = () => {
+    setLoading(true)
     const formData = new FormData();
     if (file) {
       formData.append("profilePicture", file);
@@ -81,9 +84,11 @@ const profile = () => {
           dispatch(updateUser(data.userInfos));
           setSuccess("Modifications enregistrées avec succès");
           setError("");
+          setLoading(false);
         } else {
           setError(data.error);
           setSuccess("");
+          setLoading(false);
         }
       });
   };
@@ -91,7 +96,7 @@ const profile = () => {
   return (
     <div>
       <Header />
-      <div className="bg-lightGrey ">
+      <div className="bg-lightGrey min-h-screen">
         <div className="lg:max-w-screen-xl mx-auto lg:flex">
           <SettingsSection />
           <div className="w-screen flex flex-col items-center px-8 lg:pt-32">
@@ -189,11 +194,13 @@ const profile = () => {
                 textColor="text-white"
                 text="Enregistrer"
                 textSize="text-sm"
+                loading={loading}
               />
             </div>
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

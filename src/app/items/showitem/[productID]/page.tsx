@@ -7,6 +7,7 @@ import { useAppSelector, useAppDispatch } from "@/app/redux/store";
 import { updateUser } from "@/app/redux/slices/userSlice";
 
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 import GalleryGridFour from "@/components/items/GalleryGridFour";
 import GalleryGridThree from "@/components/items/GalleryGridThree";
 import GalleryGridTwo from "@/components/items/GalleryGridTwo";
@@ -174,7 +175,7 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
           </div>
         </div>
       </div>
-      <div className="w-full h-96 bg-pink-200"></div>
+      <Footer/>
       {/* Lightbox */}
       {isOpenLightbox && (
         <Lightbox
@@ -191,6 +192,7 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
           setIsAuthModalOpen={setOpenAuthModal}
         />
       )}
+      
     </div>
   );
 };

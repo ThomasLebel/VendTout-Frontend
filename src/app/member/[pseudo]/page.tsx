@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useAppSelector } from "@/app/redux/store";
 
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 import MemberInfos from "@/components/member/MemberInfos";
 import PostedProductsFeed from "@/components/member/PostedProductsFeed";
 import { ProductType } from "@/types/ProductType";
@@ -49,7 +50,7 @@ const member = ({ params }: { params: Promise<{ pseudo: string }> }) => {
   }, [refresh, user]);
 
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="min-h-screen max-w-screen-xl mx-auto">
       <Header />
       <div className="mt-24 p-12">
         <MemberInfos userInfos={userInfos} />
@@ -60,6 +61,7 @@ const member = ({ params }: { params: Promise<{ pseudo: string }> }) => {
           setRefresh={setRefresh}
         />
       </div>
+      <Footer/>
     </div>
   );
 };

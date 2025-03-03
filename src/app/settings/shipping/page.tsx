@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useAppSelector } from "@/app/redux/store";
 
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 import SettingsSection from "@/components/settings/SettingsSection";
 import ShippingModal from "@/components/settings/shipping/ShippingModal";
 
@@ -63,6 +64,7 @@ const shipping = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

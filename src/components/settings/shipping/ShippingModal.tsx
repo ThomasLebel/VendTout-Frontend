@@ -19,6 +19,7 @@ const ShippingModal = ({
   const [zipCode, setZipCode] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     setFullName(user.shippingAddress?.fullName || "");
@@ -31,6 +32,7 @@ const ShippingModal = ({
     if (fullName === "" || street === "" || zipCode === "" || city === "") {
       setError("Veuillez remplir tous les champs");
     } else {
+      setLoading(true)
       setError("");
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/shippingAddress`, {
         method: "PUT",
@@ -50,8 +52,10 @@ const ShippingModal = ({
           if (data.result) {
             setIsOpen(false);
             dispatch(updateUser(data.userInfos));
+            setLoading(false)
           } else {
             setError(data.error);
+            setLoading(false)
           }
         });
     }
@@ -156,6 +160,7 @@ const ShippingModal = ({
                   text="Annuler"
                   textSize="text-base"
                   wfull={true}
+                  loading={loading}
                 />
               </div>
             </div>

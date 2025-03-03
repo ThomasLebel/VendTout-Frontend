@@ -4,6 +4,7 @@ import { useState, useEffect, use } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 import CategoryButton from "@/components/ui/CategoryButton";
 import OptionSelectedButton from "@/components/ui/OptionSelectedButton";
 import CategoriesSelectorModal from "@/components/ui/CategoriesSelectorModal";
@@ -116,8 +117,8 @@ const catalog = () => {
   return (
     <div>
       <Header />
-      <div className="mt-32 w-full h-96 p-6 flex flex-col items-center">
-        <div className="max-w-screen-xl w-full">
+      <div className="mt-32 w-full p-6 flex flex-col items-center">
+        <div className="max-w-screen-xl min-h-[700px] w-full">
           <h1 className="text-xl font-semibold text-black">
             {selectedGender ? selectedGender : "Catalogue"}
           </h1>
@@ -246,6 +247,7 @@ const catalog = () => {
           <CatalogFeed products={products} />
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

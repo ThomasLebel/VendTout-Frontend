@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from "@/app/redux/store";
 import { updateUser } from "@/app/redux/slices/userSlice";
 
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 import Button from "@/components/ui/Button";
 import SettingsSection from "@/components/settings/SettingsSection";
 import ChangeMailModal from "@/components/settings/userinfos/ChangeMailModal";
@@ -21,6 +22,7 @@ const profile = () => {
   const [birthDate, setBirthDate] = useState<string>(user.birthDate || "");
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [isChangeMailModalOpen, setIsChangeMailModalOpen] = useState<boolean>(false);
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState<boolean>(false);
@@ -34,6 +36,7 @@ const profile = () => {
 
   // Fonction pour modifier les informations de l'utilisateur
   const handleSave = () => {
+    setLoading(true)
     fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/info`, {
       method: "PUT",
       headers: {
@@ -52,9 +55,11 @@ const profile = () => {
           dispatch(updateUser(data.userInfos));
           setSuccess("Modifications enregistrées avec succès");
           setError("");
+          setLoading(false);
         } else {
           setSuccess("");
           setError(data.error);
+          setLoading(false);
         }
       });
   };
@@ -163,18 +168,21 @@ const profile = () => {
             )}
             <div
               className="w-full flex justify-end items-center p-6"
-              onClick={handleSave}
             >
+              <div onClick={handleSave}>
               <Button
                 bgColor="bg-mainColor"
                 textColor="text-white"
                 text="Enregistrer"
                 textSize="text-sm"
+                loading={loading}
               />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
