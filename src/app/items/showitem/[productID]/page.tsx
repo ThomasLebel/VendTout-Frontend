@@ -37,8 +37,6 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
   const [nbLikes, setNbLikes] = useState(0);
   const [openAuthModal, setOpenAuthModal] = useState(false);
 
-  console.log(otherProducts);
-
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/${productID}`)
       .then((res) => res.json())
@@ -167,7 +165,7 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
 
         {/* Section Description */}
         <div className="w-full mt-3 px-2 lg:mt-32 lg:w-[40%]">
-          <ItemInformations product={product} ownProduct={ownProduct} />
+          <ItemInformations product={product} ownProduct={ownProduct} setOpenAuthModal={setOpenAuthModal}/>
           <SellerInformations product={product} />
           {/* Section autres produits en vente affiché sur mobile */}
           <div className=" lg:hidden">

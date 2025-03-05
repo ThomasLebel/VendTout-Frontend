@@ -1,118 +1,83 @@
 "use client";
 
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  InformationCircleIcon,
-} from "@heroicons/react/24/outline";
-
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import ReceivedMessage from "@/components/inbox/ReceivedMessage";
-import SentMessage from "@/components/inbox/SentMessage";
-import MessageInput from "@/components/inbox/MessageInput";
+import ConversationItem from "@/components/inbox/ConversationItem";
 
+import { useAppSelector } from "../redux/store";
 import { useEffect, useState } from "react";
 import {
   doc,
   getDoc,
   getDocs,
   collection,
+  query,
+  where,
+  orderBy,
   getFirestore,
-  onSnapshot
+  onSnapshot,
 } from "firebase/firestore";
 import { db } from "@/app/firebase/firebase";
 
 const inbox = () => {
-  interface Message {
-    imageUrl: string;
-    seenBy: string[];
-    senderID: string;
-    text: string;
-    timestamp: { seconds: number; nanoseconds: number };
+  const user = useAppSelector((state) => state.user.value);
+
+  interface Chat {
+    lastMessage: string;
+    lastMessageTimestamp: {
+      nanoseconds : number,
+      seconds: number
+    }
+    lastMessageSeenBy : string[]
+    participants: {
+      username: string;
+      avatarUrl: string;
+    }[];
+    participantsUsername: string[];
   }
 
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [participants, setParticipants] = useState<
-    { username: string; avatarUrl: string }[]
-  >([]);
-
+  const [chats, setChats] = useState<Chat[]>([]);
 
   useEffect(() => {
-
-    const docRef = doc(db, "chats", "lilou74_thomas");
-    const messagesRef = collection(docRef, "messages");
-  
-    // Écoute les mises à jour de la conversation (participants)
-    const unsubscribeChat = onSnapshot(docRef, (docSnap) => {
-      const chat = docSnap.data();
-      if (chat) {
-        setParticipants(chat.participants);
+    if (user.username) {
+      const querySnapshot = query(
+        collection(db, "chats"),
+        where("participantsUsername", "array-contains", user.username),
+      );
+      const unsubscribeChats = onSnapshot(querySnapshot, (snapshot) => {
+        const chatsOfUser : Chat[] = snapshot.docs.map((doc) => doc.data() as Chat)
+        chatsOfUser.sort((a : Chat, b : Chat) => b.lastMessageTimestamp.seconds - a.lastMessageTimestamp.seconds)
+        setChats(chatsOfUser)
+      })
+      
+      return () => {
+        unsubscribeChats();
       }
-    });
-  
-    // Écoute les mises à jour des messages en temps réel
-    const unsubscribeMessages = onSnapshot(messagesRef, (snapshot) => {
-      const DbMessages: Message[] = snapshot.docs
-        .map((doc) => doc.data() as Message)
-        .filter((msg) => msg.timestamp?.seconds) 
-        .sort((a, b) => a.timestamp.seconds - b.timestamp.seconds);
-  
-      setMessages(DbMessages);
-    });
-  
-    // Nettoyage des écouteurs lors du démontage du composant
-    return () => {
-      unsubscribeChat();
-      unsubscribeMessages();
-    };
-  }, []);
+    }
+  }, [user]);
 
   return (
     <div>
       <Header />
       <div className="pt-32 w-screen h-[97vh] flex flex-col items-center">
-        <div className="w-full max-w-screen-xl h-full flex flex-col justify-between">
+        <div className="w-full max-w-screen-xl h-full flex flex-col">
           {/* Section informations */}
-          <div className="p-4 flex justify-between border-b border-t border-gray-200">
-            <ArrowLeftIcon className="h-5 w-5" />
-            <span>Thomas</span>
-            <InformationCircleIcon className="h-6 w-6" />
+          <div className="p-4 border-b border-t lg:border-t-0 border-gray-200">
+            <span className="font-medium">Messages</span>
           </div>
 
-          {/* Section discussion */}
-          <div className="flex-1 overflow-y-scroll flex flex-col-reverse ">
-            <div className="w-full p-4 flex flex-col gap-3">
-              {messages.map((message, index) => {
-                if (message.senderID === "thomas") {
-                  return (
-                    <SentMessage
-                      message={message.text}
-                      timestamp={message.timestamp}
-                      key={index}
-                    />
-                  );
-                } else {
-                  return (
-                    <ReceivedMessage
-                      message={message.text}
-                      timestamp={message.timestamp}
-                      avatarURL={
-                        participants.find(
-                          (p) => p.username === message.senderID
-                        )?.avatarUrl ||
-                        "https://res.cloudinary.com/dkf48p2ah/image/upload/v1740500082/VendToutAvatars/cecvvkli3ze6sdqokb7r.jpg"
-                      }
-                      key={index}
-                    />
-                  );
-                }
-              })}
-            </div>
+          {/* Section conversation */}
+          <div className="flex-1 flex flex-col overflow-y-scroll">
+            {chats.map((chat, index) => (
+              <ConversationItem
+                key={index}
+                chatPartner={chat.participants.filter((participant) => participant.username !== user.username)[0]}
+                lastMessage={chat.lastMessage}
+                lastMessageTimestamp={chat.lastMessageTimestamp.seconds}
+                lastMessageSeen={chat.lastMessageSeenBy.includes(user.username || "")}
+              />
+            ))}
           </div>
-
-          {/* Section envoi de message*/}
-          <MessageInput />
         </div>
       </div>
       <Footer />

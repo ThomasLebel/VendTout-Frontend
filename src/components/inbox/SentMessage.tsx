@@ -9,7 +9,7 @@ const SentMessage = ({
   timestamp: { seconds: number; nanoseconds: number };
 }) => {
 
-  const messageTime = moment.unix(timestamp.seconds);
+  const messageTime = moment.unix(timestamp.seconds + 5);
 
   return (
     <div className="flex flex-col gap-4">

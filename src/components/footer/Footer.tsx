@@ -6,8 +6,8 @@ const Footer = () => {
         <div className="flex flex-col gap-8 py-16 px-5 lg:flex-row  lg:gap-56">
           {/*Vinted*/}
           <div className="flex flex-col gap-3">
-            <span className="footerTitle">Vinted</span>
-            <span className="footerLink">À propos de Vinted</span>
+            <span className="footerTitle">VendTout</span>
+            <span className="footerLink">À propos de VendTout</span>
             <span className="footerLink">Carrière</span>
             <span className="footerLink">Le développement durable</span>
             <span className="footerLink">Presse</span>
@@ -21,8 +21,8 @@ const Footer = () => {
             <span className="footerLink">Vérification de l'article</span>
             <span className="footerLink">Applications mobiles</span>
             <span className="footerLink">Tableau de bord</span>
-            <span className="footerLink">Vinted Pro</span>
-            <span className="footerLink">Guide Vinted Pro</span>
+            <span className="footerLink">VendTout Pro</span>
+            <span className="footerLink">Guide VendTout Pro</span>
           </div>
 
           {/* Aide */}
@@ -52,7 +52,7 @@ const Footer = () => {
           <span className="footerLink">Paramètres de cookies</span>
           <span className="footerLink">Termes et Conditions</span>
           <span className="footerLink">Notre plateforme</span>
-          <span className="footerLink">Termes et conditions de Vinted Pro</span>
+          <span className="footerLink">Termes et conditions de VendTout Pro</span>
         </div>
       </div>
     </div>

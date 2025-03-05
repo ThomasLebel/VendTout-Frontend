@@ -1,25 +1,77 @@
-import { ShieldCheckIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { useAppSelector, useAppDispatch } from "@/app/redux/store";
+import { useRouter } from "next/navigation";
+
 import Button from "../ui/Button";
 import DeleteProductModal from "../member/DeleteProductModal";
+
+import { addProductID } from "@/app/redux/slices/messageInformation";
+
 import { ProductType } from "@/types/ProductType";
+
 import moment from "moment";
 import "moment/locale/fr";
 
-const ItemInformations = ({ product, ownProduct }: { product: ProductType, ownProduct: boolean }) => {
+import { ShieldCheckIcon } from "@heroicons/react/24/outline";
 
-  const [openDeleteProductModal, setOpenDeleteProductModal] = useState<boolean>(false)
- 
+const ItemInformations = ({
+  product,
+  ownProduct,
+  setOpenAuthModal,
+}: {
+  product: ProductType;
+  ownProduct: boolean;
+  setOpenAuthModal: Dispatch<SetStateAction<boolean>>;
+}) => {
 
-  {/* Fonction pour supprimer un produit */}
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const user = useAppSelector((state) => state.user.value);
+
+  const [openDeleteProductModal, setOpenDeleteProductModal] =
+    useState<boolean>(false);
+
+  {
+    /* Fonction pour supprimer un produit */
+  }
   const handleDeleteProduct = () => {
-    setOpenDeleteProductModal(true)
+    setOpenDeleteProductModal(true);
+  };
+
+  /* Fonction envoi message */
+  const handleSendMessage = () => {
+    if (!user.token) {
+      setOpenAuthModal(true);
+      return;
+    } else {
+      let chatID = "";
+      if (user.username && product.userID.username) {
+        dispatch(addProductID(product._id))
+        const users = [user.username, product.userID.username].sort();
+        chatID = users.join("_");
+        router.push(`/inbox/${chatID}`);
+      }
+    }
+  };
+
+  /* Fonction acheter */
+  const handleBuy = () => {
+    if (!user.token){
+      setOpenAuthModal(true)
+    } else {
+      router.push(`/checkout/${product._id}`)
+    }
   }
 
   return (
-    <div className="border border-gray-200 rounded-lg p-4">
+    <div className="relative border border-gray-200 rounded-lg p-4">
+      {/* Article vendu ? */}
+      {product.isSold && <div className="absolute top-0 left-0 w-full p-4 bg-[#5A6566] rounded-t-lg">
+        <span className="text-white font-medium">Vendu</span>
+      </div>}
       {/* Nom de l'article */}
-      <h1 className="font-medium">{product.title}</h1>
+      <h1 className={`font-medium ${product.isSold && "mt-12"}`}>{product.title}</h1>
 
       {/*  Section Taille / Etat / Marque */}
       <div className="flex gap-1 items-center">
@@ -100,9 +152,7 @@ const ItemInformations = ({ product, ownProduct }: { product: ProductType, ownPr
 
       {/* Section Description */}
       <div className="mt-4 flex flex-col gap-2 border-b border-gray-200 pb-4 ">
-        <span
-          className={`text-darkGrey whitespace-pre-line`}
-        >
+        <span className={`text-darkGrey whitespace-pre-line`}>
           {product.description}
         </span>
       </div>
@@ -110,61 +160,69 @@ const ItemInformations = ({ product, ownProduct }: { product: ProductType, ownPr
       {/* Section prix livraison */}
       <div className="mt-4 flex justify-between gap-2">
         <span className="text-darkGrey text-sm">Envoi</span>
-        <span className="text-darkGrey text-sm">à partir de 3,89 €</span>
+        <span className="text-darkGrey text-sm">à partir de 2,88 €</span>
       </div>
 
       {/* Affichage des boutons si le produit n'appartient pas à l'utilisateur connecté */}
-      {!ownProduct && <>
-      {/* Bouton acheter */}
-      <div className="mt-6 flex justify-center">
-        <Button
-          bgColor="bg-mainColor"
-          textColor="text-white"
-          text="Acheter"
-          wfull={true}
-          textSize="text-base"
-        />
-      </div>
+      {!ownProduct && !product.isSold && (
+        <>
+          {/* Bouton acheter */}
+          <div className="mt-6 flex justify-center" onClick={handleBuy}>
+            <Button
+              bgColor="bg-mainColor"
+              textColor="text-white"
+              text="Acheter"
+              wfull={true}
+              textSize="text-base"
+            />
+          </div>
 
-      {/* Bouton Faire une offre */}
-      <div className="mt-4 flex justify-center">
-        <Button
-          bgColor="bg-white"
-          border={true}
-          textColor="text-mainColor"
-          text="Faire une offre"
-          wfull={true}
-          textSize="text-base"
-        />
-      </div>
+          {/* Bouton Faire une offre */}
+          <div className="mt-4 flex justify-center">
+            <Button
+              bgColor="bg-white"
+              border={true}
+              textColor="text-mainColor"
+              text="Faire une offre"
+              wfull={true}
+              textSize="text-base"
+            />
+          </div>
 
-      {/* Bouton Message */}
-      <div className="mt-4 flex justify-center">
-        <Button
-          bgColor="bg-white"
-          border={true}
-          textColor="text-mainColor"
-          text="Message"
-          wfull={true}
-          textSize="text-base"
-        />
-      </div>
-      </>}
+          {/* Bouton Message */}
+          <div className="mt-4 flex justify-center" onClick={handleSendMessage}>
+            <Button
+              bgColor="bg-white"
+              border={true}
+              textColor="text-mainColor"
+              text="Message"
+              wfull={true}
+              textSize="text-base"
+            />
+          </div>
+        </>
+      )}
 
       {/* Bouton supprimer si le propriétaire est connecté */}
-      { ownProduct && <div className="mt-4 flex justify-center" onClick={handleDeleteProduct}>
-        <Button
-          bgColor="bg-white"
-          textColor="text-red-500"
-          border={true}
-          borderColor="border-red-500"
-          text="Supprimer"
-          textSize="text-sm"
-          wfull={true}
-        />
-      <DeleteProductModal isOpen={openDeleteProductModal} setIsOpen={setOpenDeleteProductModal} productID={product._id} fromShowItem={true}/>
-      </div>}
-
+      {ownProduct && (
+        <div className="mt-4 flex justify-center" onClick={handleDeleteProduct}>
+          <Button
+            bgColor="bg-white"
+            textColor="text-red-500"
+            border={true}
+            borderColor="border-red-500"
+            text="Supprimer"
+            textSize="text-sm"
+            wfull={true}
+          />
+          <DeleteProductModal
+            isOpen={openDeleteProductModal}
+            setIsOpen={setOpenDeleteProductModal}
+            productID={product._id}
+            fromShowItem={true}
+          />
+        </div>
+      )}
     </div>
   );
 };

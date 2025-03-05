@@ -40,7 +40,8 @@ const member = ({ params }: { params: Promise<{ pseudo: string }> }) => {
       if (data.userInfos.username === user.username) {
         setOwnProfile(true);
       }
-      setProducts(data.products);
+      const filteredProducts = data.products.filter((product : ProductType) => product.isSold === false)
+      setProducts(filteredProducts);
       setUserInfos(data.userInfos);
     }
   };

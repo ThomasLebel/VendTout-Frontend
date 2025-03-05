@@ -11,7 +11,7 @@ const ReceivedMessage = ({
   avatarURL: string;
 }) => {
 
-  const messageTime = moment.unix(timestamp.seconds);
+  const messageTime = moment.unix(timestamp.seconds + 5 );
 
   return (
     <div className="flex flex-col gap-4">
@@ -21,7 +21,7 @@ const ReceivedMessage = ({
       </div>
       {/* Message reçu */}
       <div className="w-full flex justify-start">
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full">
           <img src={avatarURL} className="h-9 w-9 rounded-full" />
           <div className="px-2 py-3 max-w-[70%] rounded-lg border border-gray-200 flex gap-2">
             <span>{message}</span>

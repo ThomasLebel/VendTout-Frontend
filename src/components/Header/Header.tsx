@@ -31,9 +31,7 @@ const Header = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (user.token) {
-      setIsLogged(true);
-    }
+      setIsLogged(!!user.token);
   }, [user.token]);
 
   const handleSellNow = () => {
@@ -69,9 +67,9 @@ const Header = () => {
               {/* Affichage des icones sur mobile si l'utilisateur est connecté */}
               {isLogged && (
                 <ul className="flex gap-5 items-center">
-                  <li>
+                  <Link href='/inbox'>
                     <EnvelopeIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
-                  </li>
+                  </Link>
                   <li>
                     <BellIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
                   </li>
