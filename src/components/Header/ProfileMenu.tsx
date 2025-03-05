@@ -71,12 +71,12 @@ const ProfileMenu = () => {
           </a>
         </MenuItem>
         <MenuItem>
-          <a className="p-3 block data-[focus]:bg-lightGrey" href="/">
+          <Link href="/orders" className="p-3 block data-[focus]:bg-lightGrey">
             <div className="flex items-center gap-2">
               <DocumentTextIcon className="size-7 text-darkGrey" />
               <span className="text-base font-medium">Mes commandes</span>
             </div>
-          </a>
+          </Link>
         </MenuItem>
         <MenuItem>
           <a className="p-3 block data-[focus]:bg-lightGrey" href="/">

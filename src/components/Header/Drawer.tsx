@@ -164,15 +164,15 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
                 <span className="text-base font-medium">Personnalisation</span>
               </div>
             </a>
-            <a
+            <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
-              href="/"
+              href="/orders"
             >
               <div className="flex items-center gap-2">
                 <DocumentTextIcon className="size-7 text-darkGrey" />
                 <span className="text-base font-medium">Mes commandes</span>
               </div>
-            </a>
+            </Link>
             <a
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/"
