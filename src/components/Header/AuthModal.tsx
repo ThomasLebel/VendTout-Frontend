@@ -33,6 +33,8 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
 
+  console.log(process.env.NEXT_PUBLIC_SERVER_URL)
+
   {
     /* Fonction de création de compte */
   }
