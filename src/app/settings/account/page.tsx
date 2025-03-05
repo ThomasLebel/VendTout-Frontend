@@ -11,7 +11,7 @@ import SettingsSection from "@/components/settings/SettingsSection";
 import ChangeMailModal from "@/components/settings/userinfos/ChangeMailModal";
 import DeleteAccountModal from "@/components/settings/userinfos/DeleteAccountModal";
 
-const profile = () => {
+const Account = () => {
   //Récupération de l'utilisateur
   const user = useAppSelector((state) => state.user.value);
   const dispatch = useAppDispatch();
@@ -187,4 +187,4 @@ const profile = () => {
   );
 };
 
-export default profile;
+export default Account;

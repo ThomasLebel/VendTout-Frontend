@@ -14,7 +14,7 @@ import { updateUser } from "@/app/redux/slices/userSlice";
 import resizeImage from "@/lib/utils/resizeImage";
 import dataURLtoFile from "@/lib/utils/dataURLtoFile";
 
-const profile = () => {
+const Profile = () => {
   //Récupération de l'utilisateur
   const user = useAppSelector((state) => state.user.value);
   const dispatch = useAppDispatch();
@@ -205,4 +205,4 @@ const profile = () => {
   );
 };
 
-export default profile;
+export default Profile;

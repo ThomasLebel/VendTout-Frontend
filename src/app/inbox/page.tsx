@@ -19,7 +19,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/app/firebase/firebase";
 
-const inbox = () => {
+const Inbox = () => {
   const user = useAppSelector((state) => state.user.value);
 
   interface Chat {
@@ -85,4 +85,4 @@ const inbox = () => {
   );
 };
 
-export default inbox;
+export default Inbox;

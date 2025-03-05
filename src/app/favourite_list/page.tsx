@@ -2,7 +2,7 @@ import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import FavoriteFeed from "@/components/favourite_list/FavoriteFeed";
 
-const favourite_list = () => {
+const FavouriteList = () => {
   return (
     <div>
       <Header />
@@ -14,4 +14,4 @@ const favourite_list = () => {
   );
 };
 
-export default favourite_list;
+export default FavouriteList;

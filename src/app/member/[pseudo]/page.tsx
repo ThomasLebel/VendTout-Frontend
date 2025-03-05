@@ -10,7 +10,7 @@ import MemberInfos from "@/components/member/MemberInfos";
 import PostedProductsFeed from "@/components/member/PostedProductsFeed";
 import { ProductType } from "@/types/ProductType";
 
-const member = ({ params }: { params: Promise<{ pseudo: string }> }) => {
+const Member = ({ params }: { params: Promise<{ pseudo: string }> }) => {
   const { pseudo } = use(params);
   const user = useAppSelector((state) => state.user.value);
 
@@ -67,4 +67,4 @@ const member = ({ params }: { params: Promise<{ pseudo: string }> }) => {
   );
 };
 
-export default member;
+export default Member;

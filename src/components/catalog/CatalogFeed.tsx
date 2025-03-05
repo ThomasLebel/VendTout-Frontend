@@ -1,5 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
 
 import ProductCard from "../ui/ProductCard";
 import { ProductType } from "@/types/ProductType";

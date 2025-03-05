@@ -10,7 +10,7 @@ import Footer from "@/components/footer/Footer";
 
 import { useSearchParams } from "next/navigation";
 
-const search = () => {
+const Search = () => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -78,4 +78,4 @@ const search = () => {
   );
 };
 
-export default search;
+export default Search;

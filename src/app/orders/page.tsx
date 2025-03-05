@@ -5,7 +5,7 @@ import OrderItem from "@/components/orders/OrderItem";
 
 
 
-const orders = () => {
+const Orders = () => {
   return (
     <div>
       <Header />
@@ -38,4 +38,4 @@ const orders = () => {
   );
 };
 
-export default orders;
+export default Orders;

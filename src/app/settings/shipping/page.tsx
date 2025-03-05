@@ -8,7 +8,7 @@ import Footer from "@/components/footer/Footer";
 import SettingsSection from "@/components/settings/SettingsSection";
 import ShippingModal from "@/components/settings/shipping/ShippingModal";
 
-const shipping = () => {
+const Shipping = () => {
   //Récupération de l'utilisateur
   const user = useAppSelector((state) => state.user.value);
 
@@ -69,4 +69,4 @@ const shipping = () => {
   );
 };
 
-export default shipping;
+export default Shipping;

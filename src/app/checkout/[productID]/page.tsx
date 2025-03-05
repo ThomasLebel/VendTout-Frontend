@@ -18,7 +18,7 @@ import { useAppSelector } from "@/app/redux/store";
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 
-const checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
+const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
   
   const { productID } = use(params);
   const router = useRouter();
@@ -137,4 +137,4 @@ const checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
   );
 };
 
-export default checkout;
+export default Checkout;

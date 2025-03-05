@@ -14,7 +14,7 @@ import ConditionModal from "@/components/ui/ConditionModal";
 
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-const addItem = () => {
+const AddItem = () => {
 
   const user = useAppSelector((state) => state.user.value);
   const router = useRouter();
@@ -343,4 +343,4 @@ const addItem = () => {
   );
 };
 
-export default addItem;
+export default AddItem;

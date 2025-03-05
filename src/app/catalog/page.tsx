@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Header from "@/components/header/Header";
@@ -16,7 +16,7 @@ import CatalogFeed from "@/components/catalog/CatalogFeed";
 
 import { ProductType } from "@/types/ProductType";
 
-const catalog = () => {
+const Catalog = () => {
   const searchParams = useSearchParams();
 
   const [isCategoriesSelectorOpen, setIsCategoriesSelectorOpen] =
@@ -252,4 +252,4 @@ const catalog = () => {
   );
 };
 
-export default catalog;
+export default Catalog;
