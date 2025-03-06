@@ -1,11 +1,5 @@
 "use client";
 
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  InformationCircleIcon,
-} from "@heroicons/react/24/outline";
-
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import InformationSection from "@/components/inbox/InformationSection";
@@ -20,8 +14,6 @@ import { useEffect, useState, use } from "react";
 import { useAppSelector, useAppDispatch } from "@/app/redux/store";
 import { removeProductID } from "@/app/redux/slices/messageInformation";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   doc,
   collection,
@@ -30,8 +22,8 @@ import {
 } from "firebase/firestore";
 import { db } from "@/app/firebase/firebase";
 
-const inbox = ({ params }: { params: Promise<{ chatID: string }> }) => {
-  const router = useRouter()
+const Inbox = ({ params }: { params: Promise<{ chatID: string }> }) => {
+  
   const dispatch = useAppDispatch();
 
   const user = useAppSelector((state) => state.user.value);
@@ -175,4 +167,4 @@ const inbox = ({ params }: { params: Promise<{ chatID: string }> }) => {
   );
 };
 
-export default inbox;
+export default Inbox;

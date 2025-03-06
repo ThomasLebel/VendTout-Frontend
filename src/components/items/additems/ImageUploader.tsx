@@ -29,7 +29,7 @@ const ImageUploader = ({photos, setPhotos}: {photos: File[], setPhotos: React.Di
         file.type === "image/jpg"
     );
     // Boucle sur toutes les images
-    for (let photo of droppedPhotos) {
+    for (const photo of droppedPhotos) {
       // Création d'une url
       const imageUrl: string = URL.createObjectURL(photo);
       // Création d'une image et association de l'utl
@@ -69,7 +69,7 @@ const ImageUploader = ({photos, setPhotos}: {photos: File[], setPhotos: React.Di
         file.type === "image/jpg"
     );
     // Boucle sur toutes les images
-    for (let photo of droppedPhotos) {
+    for (const photo of droppedPhotos) {
         // Création d'une url
         const imageUrl: string = URL.createObjectURL(photo);
         // Création d'une image et association de l'utl

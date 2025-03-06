@@ -70,7 +70,7 @@ const DeleteAccountModal = ({
             </DialogTitle >
             <div className="text-sm text-gray-500 flex flex-col items-center gap-2 pb-10">
                 <ExclamationTriangleIcon className="w-10 h10 text-red-800" />
-                <p className="text-center">Attention, cette action est <span className="font-bold">irréversible</span>, vous perdrez l'ensemble de vos données.</p>
+                <p className="text-center">Attention, cette action est <span className="font-bold">irréversible</span>, vous perdrez l&apos;ensemble de vos données.</p>
             </div>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">

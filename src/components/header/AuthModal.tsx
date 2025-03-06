@@ -1,6 +1,5 @@
 "use client";
 import {
-  Description,
   Dialog,
   DialogPanel,
   DialogTitle,
@@ -180,12 +179,12 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
                 {/* Changer de formulaire */}
                 <div className="text-center mt-5">
                   <span className="text-sm text-gray-500">
-                    Tu n'as pas de compte VendTout ?{" "}
+                    Tu n&apos;as pas de compte VendTout ?{" "}
                     <span
                       className="text-mainColor cursor-pointer underline underline-offset-2"
                       onClick={() => setIsSignup(true)}
                     >
-                      S'inscrire
+                      S&apos;inscrire
                     </span>
                   </span>
                 </div>

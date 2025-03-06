@@ -1,12 +1,11 @@
 "use client";
 
-import { JSX, useState } from "react";
-import { useAppSelector } from "@/app/redux/store";
+import { useState } from "react";
+
 import { useRouter } from "next/navigation";
 
-import { HeartIcon } from "@heroicons/react/24/outline";
-import { HeartIcon as HeartIconFilled } from "@heroicons/react/24/solid";
 
+import Image from "next/image";
 import Button from "../ui/Button";
 import AuthModal from "../header/AuthModal";
 
@@ -25,17 +24,17 @@ const OwnerProductCard = ({
     
   const router = useRouter();
 
-  const user = useAppSelector((state) => state.user.value);
+
 
   const [openAuthModal, setOpenAuthModal] = useState<boolean>(false);
 
-  // Choix de l'icône du coeur en fonction de si le produit est liké ou non par l'utilisateur
-  let heartIcon: JSX.Element = <HeartIcon className="w-5 h-5 text-darkGrey" />;
-  if (user.likedProducts) {
-    if (user.likedProducts.includes(product._id)) {
-      heartIcon = <HeartIconFilled className="w-5 h-5 text-[#CC4454]" />;
-    }
-  }
+  // // Choix de l'icône du coeur en fonction de si le produit est liké ou non par l'utilisateur
+  // let heartIcon: JSX.Element = <HeartIcon className="w-5 h-5 text-darkGrey" />;
+  // if (user.likedProducts) {
+  //   if (user.likedProducts.includes(product._id)) {
+  //     heartIcon = <HeartIconFilled className="w-5 h-5 text-[#CC4454]" />;
+  //   }
+  // }
 
   // Fonction pour rediriger vers la page de l'article
   const handleItemClick = () => {
@@ -52,8 +51,10 @@ const OwnerProductCard = ({
     <div>
       {/* Image produit et like */}
       <div className="w-full bg-red-500 rounded-lg flex items-end justify-end relative">
-        <img
+        <Image
           src={product.photos[0]}
+          height={1500}
+          width={1000}
           alt={`photo ${product.title} de ${product.userID.username}`}
           className="w-full h-full object-cover rounded-lg cursor-pointer"
           onClick={handleItemClick}

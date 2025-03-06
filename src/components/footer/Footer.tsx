@@ -18,7 +18,7 @@ const Footer = () => {
           <div className="flex flex-col gap-3">
             <span className="footerTitle">Découvrir</span>
             <span className="footerLink">Comment ça marche ?</span>
-            <span className="footerLink">Vérification de l'article</span>
+            <span className="footerLink">Vérification de l&apos;article</span>
             <span className="footerLink">Applications mobiles</span>
             <span className="footerLink">Tableau de bord</span>
             <span className="footerLink">VendTout Pro</span>
@@ -27,10 +27,10 @@ const Footer = () => {
 
           {/* Aide */}
           <div className="flex flex-col gap-3">
-            <span className="footerTitle">Centre d'aide</span>
+            <span className="footerTitle">Centre d&apos;aide</span>
             <span className="footerLink">Vendre</span>
             <span className="footerLink">Acheter</span>
-            <span className="footerLink">Confirance et sécurité</span>
+            <span className="footerLink">Confiance et sécurité</span>
           </div>
         </div>
 

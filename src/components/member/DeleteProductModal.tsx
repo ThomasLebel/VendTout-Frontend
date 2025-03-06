@@ -8,8 +8,7 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/ui/Button";
 
 import { useState } from "react";
-import { useAppSelector, useAppDispatch } from "@/app/redux/store";
-import { logout } from "@/app/redux/slices/userSlice";
+import { useAppSelector} from "@/app/redux/store";
 
 
 const DeleteProductModal = ({
@@ -31,7 +30,7 @@ const DeleteProductModal = ({
   const router = useRouter();
 
   const user = useAppSelector((state) => state.user.value);
-  const dispatch = useAppDispatch();
+
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(false)

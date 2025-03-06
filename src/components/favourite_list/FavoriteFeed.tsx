@@ -1,15 +1,12 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect} from "react";
 import { useAppSelector } from "@/app/redux/store";
-import { useRouter } from 'next/navigation'
 
 import ProductCard from "../ui/ProductCard";
 import { ProductType } from "@/types/ProductType";
 
 const FavoriteFeed = () => {
-
-  const router = useRouter();
 
   const user = useAppSelector((state) => state.user.value);
 

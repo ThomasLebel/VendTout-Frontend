@@ -5,9 +5,6 @@ import "moment/locale/fr";
 import {
   doc,
   collection,
-  addDoc,
-  setDoc,
-  getDoc,
   updateDoc,
   serverTimestamp,
   query,
@@ -17,7 +14,6 @@ import {
 import { db } from "@/app/firebase/firebase";
 
 import { useEffect, useState } from "react";
-import { time } from "console";
 
 const VendToutMessage = ({
   isSeller,

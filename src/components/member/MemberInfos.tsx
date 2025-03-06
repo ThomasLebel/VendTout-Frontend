@@ -1,17 +1,13 @@
 "use client";
 
-import { useAppSelector } from "@/app/redux/store";
-
 import { CheckCircleIcon, MapPinIcon } from "@heroicons/react/24/outline";
 
-import Button from "../ui/Button";
 
 import Image from "next/image";
 
 
 const MemberInfos = ({userInfos} : {userInfos : {username: string, profilePicture: string, country: string, city: string, aboutDescription: string}}) => {
 
-  const user = useAppSelector((state) => state.user.value);
 
   return (
     <div className="">
@@ -30,7 +26,7 @@ const MemberInfos = ({userInfos} : {userInfos : {username: string, profilePictur
         <div className="ml-3 flex flex-col gap-0">
           <div className="text-[22px] font-medium">{userInfos.username}</div>
           <div className="text-darkGrey text-[16px] mb-2">
-            Pas encore d'évaluation
+            Pas encore d&apos;évaluation
           </div>
           
         </div>

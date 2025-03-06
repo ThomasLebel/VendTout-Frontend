@@ -64,7 +64,7 @@ const ChangeMailModal = ({
               onClick={() => setIsOpen(false)}
             />
             <DialogTitle className="font-semibold text-[22px] text-center pb-8">
-              Changer d'email
+              Changer d&apos;email
             </DialogTitle>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">

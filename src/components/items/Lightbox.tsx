@@ -7,7 +7,6 @@ import {
 
 const Lightbox = ({
   photos,
-  isOpenLightbox,
   currentIndex,
   setIsOpenLightbox,
   setCurrentIndex,

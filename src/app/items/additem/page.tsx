@@ -88,7 +88,7 @@ const AddItem = () => {
       formData.append("condition", selectedCondition);
       formData.append("color", selectedColor);
       formData.append("price", price);
-      for (let photo of photos) {
+      for (const photo of photos) {
         formData.append("photos", photo);
       }
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/addItem`, {

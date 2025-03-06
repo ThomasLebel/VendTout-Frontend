@@ -41,7 +41,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
           setServiceFees(data.productInfos.price * 0.05 + 0.7);
         }
       });
-  }, []);
+  }, [productID]);
 
   useEffect(() => {
     setTotalPrice(productPrice + serviceFees + shippingFees);

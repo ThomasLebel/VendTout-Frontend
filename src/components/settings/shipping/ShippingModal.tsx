@@ -71,7 +71,7 @@ const ShippingModal = ({
         <div className="fixed inset-0 flex w-screen items-center justify-center bg-black bg-opacity-50">
           <DialogPanel className="relative w-screen lg:w-96 max-w-lg  border bg-white rounded-lg">
             <DialogTitle className="font-semibold text-base text-center py-4 border-b border-gray-300 w-full">
-              Ajouter l'adresse de livraison
+              Ajouter l&apos;adresse de livraison
             </DialogTitle>
             <div className="flex flex-col gap-4 p-8">
               {/* Nom et prénom*/}

@@ -9,7 +9,6 @@ import { logout } from "@/app/redux/slices/userSlice";
 import Button from "../ui/Button";
 
 import {
-  ChevronDownIcon,
   Cog6ToothIcon,
   AdjustmentsHorizontalIcon,
   DocumentTextIcon,
@@ -46,7 +45,7 @@ const categories: Category[] = [
   },
 ];
 
-const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) => {
+const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
 
   const router = useRouter()
 
@@ -155,7 +154,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
                 <span className="text-base font-medium">Mes paramètres</span>
               </div>
             </Link>
-            <a
+            <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/"
             >
@@ -163,7 +162,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
                 <AdjustmentsHorizontalIcon className="size-7 text-darkGrey" />
                 <span className="text-base font-medium">Personnalisation</span>
               </div>
-            </a>
+            </Link>
             <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/orders"
@@ -173,7 +172,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
                 <span className="text-base font-medium">Mes commandes</span>
               </div>
             </Link>
-            <a
+            <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/"
             >
@@ -183,7 +182,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
                   Se déconnecter
                 </span>
               </div>
-            </a>
+            </Link>
           </div>
         )}
       </div>

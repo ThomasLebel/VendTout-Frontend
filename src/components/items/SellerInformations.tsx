@@ -26,9 +26,7 @@ const SellerInformations = ({ product }: { product: ProductType }) => {
           <div className="flex justify-between items-center w-full">
             <div className="ml-3 flex flex-col gap-0">
               <span className="font-medium ">{product.userID.username}</span>
-              <span className="text-darkGrey text-[16px]">
-                Pas encore d'évaluation
-              </span>
+              <span className="text-darkGrey text-[16px]">Pas encore d&apos;évaluation</span>
             </div>
             <ChevronRightIcon className="w-5 h-5 text-darkGrey" />
           </div>

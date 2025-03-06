@@ -1,18 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-
 import {
-  Description,
   Dialog,
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
 import {
   XMarkIcon,
-  ChevronRightIcon,
-  ArrowLeftIcon,
 } from "@heroicons/react/24/outline";
 
 import Button from "./Button";

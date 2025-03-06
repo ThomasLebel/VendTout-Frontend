@@ -4,6 +4,7 @@ import { JSX, useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/app/redux/store";
 import { updateUser } from "@/app/redux/slices/userSlice";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import { HeartIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/24/solid";
@@ -65,8 +66,10 @@ const ProductCard = ({product}: {product: ProductType}) => {
     <div>
         {/* Image produit et like */}
       <div className="w-full bg-red-500 rounded-lg flex items-end justify-end relative">
-        <img
+        <Image
           src={product.photos[0]}
+          height={1500}
+          width={1000}
           alt={`photo ${product.title} de ${product.userID.username}`}
           className="w-full h-full object-cover rounded-lg cursor-pointer"
           onClick={handleItemClick}

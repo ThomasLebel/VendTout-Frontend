@@ -13,6 +13,7 @@ import ConditionModal from "@/components/ui/ConditionModal";
 import ColorModal from "@/components/ui/ColorModal";
 import BrandModal from "@/components/ui/BrandModal";
 import CatalogFeed from "@/components/catalog/CatalogFeed";
+import Button from "@/components/ui/Button";
 
 import { ProductType } from "@/types/ProductType";
 
@@ -45,6 +46,7 @@ const Catalog = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [page, setPage] = useState<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
+  const [refresh, setRefresh] = useState<boolean>(false);
 
   useEffect(() => {
     setSelectedGender(searchParams.get("gender") || "");
@@ -112,6 +114,7 @@ const Catalog = () => {
     selectedCondition,
     selectedColor,
     selectedBrand,
+    refresh
   ]);
 
   return (
@@ -245,6 +248,9 @@ const Catalog = () => {
           </div>
           {/* Feed des produits filtrés */}
           <CatalogFeed products={products} />
+          {!hasMore && <div className="w-full h-24 flex justify-center items-center" onClick={() => setRefresh(!refresh)}>
+            <Button text="Voir plus" textColor="text-white" bgColor="bg-mainColor" textSize="text-base"/>
+          </div>}
         </div>
       </div>
       <Footer/>

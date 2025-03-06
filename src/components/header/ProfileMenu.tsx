@@ -63,12 +63,12 @@ const ProfileMenu = () => {
           </Link>
         </MenuItem>
         <MenuItem>
-          <a className="p-3 block data-[focus]:bg-lightGrey" href="/">
+          <Link className="p-3 block data-[focus]:bg-lightGrey" href="/">
             <div className="flex items-center gap-2">
               <AdjustmentsHorizontalIcon className="size-7 text-darkGrey" />
               <span className="text-base font-medium">Personnalisation</span>
             </div>
-          </a>
+          </Link>
         </MenuItem>
         <MenuItem>
           <Link href="/orders" className="p-3 block data-[focus]:bg-lightGrey">
@@ -79,12 +79,12 @@ const ProfileMenu = () => {
           </Link>
         </MenuItem>
         <MenuItem>
-          <a className="p-3 block data-[focus]:bg-lightGrey" href="/">
+          <Link className="p-3 block data-[focus]:bg-lightGrey" href="/">
             <div className="flex items-center gap-2">
               <ArrowRightStartOnRectangleIcon className="size-7 text-darkGrey" />
               <span className="text-base font-medium" onClick={handleLogout}>Se déconnecter</span>
             </div>
-          </a>
+          </Link>
         </MenuItem>
       </MenuItems>
     </Menu>

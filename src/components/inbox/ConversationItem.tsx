@@ -4,6 +4,8 @@ import "moment/locale/fr";
 import { useAppSelector } from "@/app/redux/store";
 import { useRouter } from "next/navigation";
 
+import Image from "next/image";
+
 const ConversationItem = ({
   chatPartner,
   lastMessage,
@@ -31,7 +33,7 @@ const ConversationItem = ({
       onClick={handleClick}
     >
       <div className="flex gap-3 item s-center">
-        <img src={chatPartner.avatarUrl} className="h-12 w-12 rounded-full" />
+        <Image src={chatPartner.avatarUrl} alt={`avatar de ${chatPartner.username}`} width={50} height={50} className="rounded-full" />
         <div className="flex flex-col">
           <span className=" font-medium">{chatPartner.username}</span>
           <span className="text-darkGrey">{lastMessage}</span>

@@ -14,7 +14,6 @@ import Button from "./Button";
 const BrandModal = ({
   isOpen,
   setIsOpen,
-  selectedBrand,
   setSelectedBrand,
 }: {
   isOpen: boolean;

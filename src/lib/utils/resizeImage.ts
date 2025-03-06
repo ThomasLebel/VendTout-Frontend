@@ -2,7 +2,6 @@ const resizeImage = (
   image: HTMLImageElement,
   width: number,
   height: number,
-  fill: boolean = true
 ) => {
   // Créer un canvas
   const canvas: HTMLCanvasElement = document.createElement("canvas");

@@ -19,7 +19,7 @@ const OrderItem = () => {
           <span className="font-medium">Ensemble Rouge</span>
           <span className="text-darkGrey text-sm">55,00€</span>
           <span className="text-darkGrey text-sm">
-            Commande finalisée - l'acheteur a confirmé la réception edfezfze
+            Commande finalisée - l&apos;acheteur a confirmé la réception edfezfze
           </span>
         </div>
       </div>

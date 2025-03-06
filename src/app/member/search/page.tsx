@@ -63,7 +63,7 @@ const Search = () => {
                   <div className="flex flex-col">
                     <span className="font-medium">{user.username}</span>
                     <span className="text-darkGrey text-xs">
-                      Pas encore d'évaluation
+                      Pas encore d&apos;évaluation
                     </span>
                   </div>
                 </div>

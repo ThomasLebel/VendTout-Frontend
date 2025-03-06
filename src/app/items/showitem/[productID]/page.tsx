@@ -91,7 +91,7 @@ const ShowItem = ({ params }: { params: Promise<{ productID: string }> }) => {
       });
   };
 
-  let photos: string[] = product.photos;
+  const photos: string[] = product.photos;
   let GalleryGrid: JSX.Element = <></>;
 
   // Choix de la grille à afficher en fonction du nombre de photos

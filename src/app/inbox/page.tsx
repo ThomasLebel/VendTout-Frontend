@@ -7,14 +7,9 @@ import ConversationItem from "@/components/inbox/ConversationItem";
 import { useAppSelector } from "../redux/store";
 import { useEffect, useState } from "react";
 import {
-  doc,
-  getDoc,
-  getDocs,
   collection,
   query,
   where,
-  orderBy,
-  getFirestore,
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "@/app/firebase/firebase";
