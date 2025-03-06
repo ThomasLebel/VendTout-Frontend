@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/navigation";
 
 import Header from "@/components/header/Header";
@@ -78,4 +78,11 @@ const Search = () => {
   );
 };
 
-export default Search;
+// Enveloppez le composant Search dans Suspense
+const SearchWithSuspense = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Search />
+  </Suspense>
+);
+
+export default SearchWithSuspense;
