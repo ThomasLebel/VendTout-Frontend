@@ -11,7 +11,7 @@ const GalleryGridFour = ({
 }) => {
   return (
     <div className="w-full h-full grid grid-cols-2 ">
-      <div className="h-full flex overflow-hidden">
+      <div className=" flex overflow-hidden">
         <Image
           src={photos[0]}
           alt="product"

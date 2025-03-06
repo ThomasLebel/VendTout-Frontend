@@ -46,7 +46,7 @@ const Lightbox = ({
   return (
     <>
       {/* Background */}
-      <div className="fixed top-0 left-0 w-screen h-screen bg-black/50 z-20" onClick={handeBackGroundClick}>
+      <div className="fixed top-0 left-0 w-screen h-screen bg-black/50 z-20 p-6" onClick={handeBackGroundClick}>
         {/* Container */}
         <div className="flex justify-center items-center h-full">
           {/* Image */}

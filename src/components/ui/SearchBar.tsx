@@ -74,7 +74,7 @@ const SearchBar = ({id}: {id: string}) => {
           id={id}
           type="text"
           placeholder={`Rechercher des ${selectedOption.name.toLowerCase()}`}
-          className="ml-2 w-full bg-transparent outline-none text-sm"
+          className="ml-2 w-full bg-transparent outline-none"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleKeyDown}

@@ -123,7 +123,7 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
         onClose={() => setIsAuthModalOpen(false)}
         className="relative z-50 "
       >
-        <div className="fixed inset-0 flex w-screen items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex p-6 w-screen items-center justify-center bg-black bg-opacity-50">
           <DialogPanel className="relative w-screen lg:w-96 max-w-lg space-y-4 border bg-white p-6 rounded-lg">
             <XMarkIcon
               className="absolute top-1 right-1 p-2 w-12 h-12"

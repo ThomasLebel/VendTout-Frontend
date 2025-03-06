@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-full h-24 p-6 flex gap-6 flex-wrap">
+        <div className="w-full h-24 p-6 flex gap-6 flex-wrap mb-10">
           <span className="footerLink">Politique de condidentialité</span>
           <span className="footerLink">Politique de cookies</span>
           <span className="footerLink">Paramètres de cookies</span>

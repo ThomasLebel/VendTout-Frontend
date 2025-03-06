@@ -109,7 +109,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
               setPaymentMethod={setPaymentMethod}
             />
             {/* Bouton acheter mobile*/}
-            <div className="w-full bg-white p-6 block lg:hidden">
+            <div className="w-full bg-white p-6 block lg:hidden" onClick={handleBuy}>
               <Button
                 text="Payer"
                 bgColor="bg-[#278358]"
