@@ -85,7 +85,7 @@ const MessageInput = ({
       <div className="w-full p-3 bg-lightGrey rounded-lg flex justify-between items-center">
         <textarea
           placeholder="Envoyer un message"
-          rows={1}
+          rows={2}
           className="flex-1 outline-none bg-lightGrey resize-none overflow-hidden line-he"
           value={message}
           onChange={(e) => setMessage(e.target.value)}

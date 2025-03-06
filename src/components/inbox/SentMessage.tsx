@@ -20,7 +20,7 @@ const SentMessage = ({
       {/* Message envoyé */}
       <div className="w-full flex justify-end">
         <div className="px-2 py-3 max-w-[70%] rounded-lg border border-gray-200 bg-lightGrey">
-          <span>{message}</span>
+          <span className="break-words">{message}</span>
         </div>
       </div>
     </div>
