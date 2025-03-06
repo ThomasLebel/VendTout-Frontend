@@ -118,7 +118,7 @@ const Inbox = ({ params }: { params: Promise<{ chatID: string }> }) => {
   return (
     <div>
       <Header />
-      <div className="pt-32 w-screen h-[97vh] flex flex-col items-center">
+      <div className="pt-32 w-screen h-screen lg:h-[97vh] flex flex-col items-center">
         <div className="w-full max-w-screen-xl h-full flex flex-col justify-between">
           {/* Section informations */}
           <InformationSection chatPartner={chatPartner} product={product}/>

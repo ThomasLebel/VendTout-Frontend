@@ -88,6 +88,9 @@ const MessageInput = ({
           rows={2}
           className="flex-1 outline-none bg-lightGrey resize-none overflow-hidden line-he"
           value={message}
+          onFocus={(e) => {
+            e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
