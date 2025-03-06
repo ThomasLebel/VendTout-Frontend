@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Header from "@/components/header/Header";
@@ -118,6 +118,7 @@ const Catalog = () => {
   ]);
 
   return (
+    <Suspense fallback={<div className="w-full h-full flex justify-center items-center">Chargement...</div>}>
     <div>
       <Header />
       <div className="mt-32 w-full p-6 flex flex-col items-center">
@@ -255,6 +256,7 @@ const Catalog = () => {
       </div>
       <Footer/>
     </div>
+    </Suspense>
   );
 };
 
