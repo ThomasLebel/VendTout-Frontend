@@ -38,7 +38,7 @@ const ImageUploader = ({photos, setPhotos}: {photos: File[], setPhotos: React.Di
 
       // Attendre que l'image soit chargée avant de la redimensionner
       img.onload = () => {
-        const resizedImage = resizeImage(img, 1000, 1500, false);
+        const resizedImage = resizeImage(img, 1000, 1500);
         const resizedImageURL = resizedImage.toDataURL("image/jpeg");
         setPhotosUrl((prev) => [...prev, resizedImageURL]);
         setPhotos((prev) => [...prev, dataURLtoFile(resizedImageURL, "image.jpg")]);
@@ -78,7 +78,7 @@ const ImageUploader = ({photos, setPhotos}: {photos: File[], setPhotos: React.Di
   
         // Attendre que l'image soit chargée avant de la redimensionner
         img.onload = () => {
-          const resizedImage = resizeImage(img, 1000, 1500, false);
+          const resizedImage = resizeImage(img, 1000, 1500);
           const resizedImageURL = resizedImage.toDataURL("image/jpeg");
           setPhotosUrl((prev) => [...prev, resizedImageURL]);
           setPhotos((prev) => [...prev, dataURLtoFile(resizedImageURL, "image.jpg")]);
