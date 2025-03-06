@@ -11,11 +11,11 @@ const GalleryGridFour = ({
 }) => {
   return (
     <div className="w-full h-full grid grid-cols-2 ">
-      <div className=" flex overflow-hidden">
+      <div className="h-full flex overflow-hidden">
         <Image
           src={photos[0]}
           alt="product"
-          className="w-full object-cover p-[1px] rounded-lg cursor-pointer"
+          className="w-full h-full object-cover p-[1px] rounded-lg cursor-pointer"
           width={1000}
           height={1500}
           onClick={() => {
