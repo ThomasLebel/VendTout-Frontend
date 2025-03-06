@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-full px-6 py-10 border-t border-b border-gray-200 flex justify-between items-center">
+        <div className="w-full px-6 py-10 border-t border-b border-gray-200 flex flex-col gap-6 lg:flex-row justify-between items-center">
           <div className="flex gap-6">
             <img src="/images/facebook.svg" className="cursor-pointer"></img>
             <img src="/images/linkedin.svg" className="cursor-pointer"></img>
