@@ -83,20 +83,21 @@ const MessageInput = ({
   return (
     <div className="p-4 flex justify-between border-b border-t border-gray-200">
       <div className="w-full p-3 bg-lightGrey rounded-lg flex justify-between items-center">
-        <input
-          type="text"
+        <textarea
           placeholder="Envoyer un message"
-          className="flex-1 outline-none bg-lightGrey"
+          rows={1}
+          className="flex-1 outline-none bg-lightGrey resize-none overflow-hidden line-he"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
+              e.preventDefault();
               handleSendMessage();
             }
           }}
         />
         <ArrowRightIcon
-          className={`h-5 w-5 ${
+          className={`ml-4 h-5 w-5 ${
             message && "text-mainColor"
           } text-darkGrey cursor-pointer`}
           onClick={handleSendMessage}
