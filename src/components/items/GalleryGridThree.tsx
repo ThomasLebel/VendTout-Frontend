@@ -7,7 +7,7 @@ const GalleryGridThree = ({ photos, setIsOpenLightbox, setCurrentIndex }: { phot
         <Image
           src={photos[0]}
           alt="product"
-          className="w-full h-full object-cover cursor-pointer"
+          className="w-full h-full object-cover cursor-pointer bg-darkGrey bg-opacity-20"
           width={1000}
           height={1500}
           onClick={() => {
@@ -20,7 +20,7 @@ const GalleryGridThree = ({ photos, setIsOpenLightbox, setCurrentIndex }: { phot
         <Image
           src={photos[1]}
           alt="product"
-          className="w-full h-full object-cover cursor-pointer"
+          className="w-full h-full object-cover cursor-pointer bg-darkGrey bg-opacity-20"
           width={1000}
           height={1500}
           onClick={() => {
@@ -33,7 +33,7 @@ const GalleryGridThree = ({ photos, setIsOpenLightbox, setCurrentIndex }: { phot
         <Image
           src={photos[2]}
           alt="product"
-          className="w-full h-full object-cover cursor-pointer"
+          className="w-full h-full object-cover cursor-pointer bg-darkGrey bg-opacity-20"
           width={1000}
           height={1500}
           onClick={() => {

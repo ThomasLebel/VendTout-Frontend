@@ -7,7 +7,7 @@ const GalleryGridTwo = ({ photos, setIsOpenLightbox, setCurrentIndex }: { photos
         <Image
           src={photos[0]}
           alt="photo 1"
-          className="w-full h-full object-cover cursor-pointer"
+          className="w-full h-full object-cover cursor-pointer bg-darkGrey bg-opacity-20"
           width={1000}
           height={1500}
           onClick={() => {

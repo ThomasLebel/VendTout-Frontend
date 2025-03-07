@@ -21,17 +21,11 @@ import ProfileMenu from "./ProfileMenu";
 import Drawer from "./Drawer";
 import AuthModal from "./AuthModal";
 
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-} from "firebase/firestore";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "@/app/firebase/firebase";
 
 const Header = () => {
-  
-  const router = useRouter()
+  const router = useRouter();
   const user = useAppSelector((state) => state.user.value);
 
   const [isLogged, setIsLogged] = useState<boolean>(false);
@@ -40,22 +34,26 @@ const Header = () => {
   const [nbChatsNotSeen, setNbChatsNotSeen] = useState<number>(0);
 
   useEffect(() => {
-      setIsLogged(!!user.token);
+    setIsLogged(!!user.token);
   }, [user.token]);
 
   useEffect(() => {
     if (user.username) {
       const querySnapshot = query(
         collection(db, "chats"),
-        where("participantsUsername", "array-contains", user.username),
+        where("participantsUsername", "array-contains", user.username)
       );
       const unsubscribeChats = onSnapshot(querySnapshot, (snapshot) => {
-        setNbChatsNotSeen(snapshot.docs.filter((doc) => !doc.data().lastMessageSeenBy.includes(user.username)).length)
-      })
-      
+        setNbChatsNotSeen(
+          snapshot.docs.filter(
+            (doc) => !doc.data().lastMessageSeenBy.includes(user.username)
+          ).length
+        );
+      });
+
       return () => {
         unsubscribeChats();
-      }
+      };
     }
   }, [user]);
 
@@ -65,7 +63,7 @@ const Header = () => {
     } else {
       setIsAuthModalOpen(true);
     }
-  }
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-10 bg-white">
@@ -92,11 +90,17 @@ const Header = () => {
               {/* Affichage des icones sur mobile si l'utilisateur est connecté */}
               {isLogged && (
                 <ul className="flex gap-2 items-center">
-                  <Link href='/inbox' className="relative p-2">
+                  <Link href="/inbox" className="relative p-2">
                     <EnvelopeIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
-                    {nbChatsNotSeen > 0 && <div className="h-4 w-4 rounded-full bg-[#D04555] absolute top-1 right-1 flex justify-center items-center">
-                      <span className="text-[10px] text-white font-medium">{nbChatsNotSeen}</span>
-                    </div>}
+                    {nbChatsNotSeen > 0 && (
+                      <div>
+                        <div className="h-4 w-4 rounded-full bg-[#D04555] absolute top-1 right-1 flex justify-center items-center">
+                          <span className="text-[10px] text-white font-medium">
+                            {nbChatsNotSeen}
+                          </span>
+                        </div>
+                      </div>
+                    )}
                   </Link>
                   <li className="p-2">
                     <BellIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
@@ -201,20 +205,20 @@ const Header = () => {
       {/* Menu de navigation catégories pour desktop */}
       <div className="hidden lg:block border-b border-vendtoutGrey border-opacity-20">
         <div className="max-w-screen-xl mx-auto p-4 w-full h-10 flex items-center gap-8 text-sm ">
-          <Link href='/catalog?gender=Femme'>
-          <p className="text-darkGrey hover:text-mainColor cursor-pointer ml-5">
-            Femmes
-          </p>
+          <Link href="/catalog?gender=Femme">
+            <p className="text-darkGrey hover:text-mainColor cursor-pointer ml-5">
+              Femmes
+            </p>
           </Link>
-          <Link href='/catalog?gender=Homme'>
-          <p className="text-darkGrey hover:text-mainColor cursor-pointer">
-            Hommes
-          </p>
+          <Link href="/catalog?gender=Homme">
+            <p className="text-darkGrey hover:text-mainColor cursor-pointer">
+              Hommes
+            </p>
           </Link>
-          <Link href='/catalog?gender=Enfants'>
-          <p className="text-darkGrey hover:text-mainColor cursor-pointer">
-            Enfants
-          </p>
+          <Link href="/catalog?gender=Enfants">
+            <p className="text-darkGrey hover:text-mainColor cursor-pointer">
+              Enfants
+            </p>
           </Link>
         </div>
       </div>
