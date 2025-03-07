@@ -19,7 +19,6 @@ import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 
 const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
-  
   const { productID } = use(params);
   const router = useRouter();
   const user = useAppSelector((state) => state.user.value);
@@ -31,6 +30,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
   const [paymentMethod, setPaymentMethod] = useState<string>("credit card");
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/${productID}`)
@@ -49,7 +49,12 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
   }, [productPrice, serviceFees, shippingFees]);
 
   const handleBuy = async () => {
-    setIsLoading(true)
+    if (!user.shippingAddress || user.shippingAddress.street === "") {
+      setError("Veuillez renseigner une adresse de livraison");
+      return;
+    }
+    setError("");
+    setIsLoading(true);
     if (user.username) {
       const result = await NewOrder(
         productID,
@@ -59,13 +64,10 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
         productPrice,
         paymentMethod
       );
-      if (result){
-        router.push(`/inbox/${result}`)
-        setIsLoading(false)
+      if (result) {
+        router.push(`/inbox/${result}`);
       } else {
-        setIsLoading(false)
       }
-
     }
   };
 
@@ -86,6 +88,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
                 button={false}
                 handleBuy={handleBuy}
                 isLoading={isLoading}
+                error={error}
               />
             </div>
             {/* Infos Article */}
@@ -115,7 +118,13 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
               setPaymentMethod={setPaymentMethod}
             />
             {/* Bouton acheter mobile*/}
-            <div className="w-full bg-white p-6 block lg:hidden" onClick={handleBuy}>
+            <div
+              className="w-full bg-white p-6 block lg:hidden"
+              onClick={handleBuy}
+            >
+              <div className="w-full p-1 flex justify-center items-center">
+                {error && <span className="text-red-500 text-sm">{error}</span>}
+              </div>
               <Button
                 text="Payer"
                 bgColor="bg-[#278358]"
@@ -136,6 +145,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
               button={true}
               handleBuy={handleBuy}
               isLoading={isLoading}
+              error={error}
             />
           </div>
         </div>

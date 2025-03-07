@@ -18,10 +18,12 @@ const MessageInput = ({
   chatID,
   chatPartner,
   productID,
+  productTitle,
 }: {
   chatID: string;
   chatPartner: string | undefined;
   productID: string;
+  productTitle: string
 }) => {
   const user = useAppSelector((state) => state.user.value);
 
@@ -54,6 +56,7 @@ const MessageInput = ({
             },
           ],
           productID : productID,
+          productTitle : productTitle,
           participantsUsername : [user.username, chatPartner],
           buyer : user.username,
           seller : chatPartner,

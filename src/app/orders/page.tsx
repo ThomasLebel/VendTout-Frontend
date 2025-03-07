@@ -96,6 +96,7 @@ const Orders = () => {
                 return (
                   <OrderItem
                     key={i}
+                    productID={order.product._id}
                     productTitle={order.product.title}
                     productPrice={order.totalPrice}
                     status={order.status}
@@ -117,6 +118,7 @@ const Orders = () => {
                 return (
                   <OrderItem
                     key={i}
+                    productID={sale.product._id}
                     productTitle={sale.product.title}
                     productPrice={sale.sellerPrice}
                     status={sale.status}

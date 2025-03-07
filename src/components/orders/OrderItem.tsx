@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const OrderItem = ({
+  productID,
   productTitle,
   productPrice,
   status,
@@ -12,6 +13,7 @@ const OrderItem = ({
   sellerUsername,
   isOrder,
 }: {
+  productID: string;
   productTitle: string;
   productPrice: number;
   status: string;
@@ -25,11 +27,10 @@ const OrderItem = ({
 
   const [statusToShow, setStatusToShow] = useState<string>("");
   const [chatID, setChatID] = useState<string>('')
-  console.log(chatID)
 
   useEffect(() => {
     // Récupération du chatID
-    setChatID([buyerUsername, sellerUsername].sort().join("_"))
+    setChatID([buyerUsername, sellerUsername].sort().join("_") + '_' + productID)
     // Définition du message de statut à afficher
     if (isOrder){
       if (status === 'En attente'){

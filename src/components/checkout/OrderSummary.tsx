@@ -8,6 +8,7 @@ const OrderSummary = ({
   button,
   handleBuy,
   isLoading,
+  error,
 }: {
   productPrice: number;
   serviceFees: number;
@@ -16,6 +17,7 @@ const OrderSummary = ({
   button: boolean;
   handleBuy: () => void;
   isLoading: boolean;
+  error: string;
 }) => {
   return (
     <div className={`w-full h-full p-6 bg-white`}>
@@ -47,15 +49,20 @@ const OrderSummary = ({
       </div>
 
       {/* Bouton valider*/}
-      {button && <div className="mt-8 flex flex-col gap-3" onClick={handleBuy}>
-        <Button
-          text="Payer"
-          bgColor="bg-[#278358]"
-          textColor="text-white"
-          textSize="text-base"
-          loading={isLoading}
-        />
-      </div>}
+      {button && (
+        <div className="mt-8 flex flex-col gap-3" onClick={handleBuy}>
+          <div className="w-full p-1 flex justify-center items-center">
+            {error && <span className="text-red-500 text-sm">{error}</span>}
+          </div>
+          <Button
+            text="Payer"
+            bgColor="bg-[#278358]"
+            textColor="text-white"
+            textSize="text-base"
+            loading={isLoading}
+          />
+        </div>
+      )}
     </div>
   );
 };

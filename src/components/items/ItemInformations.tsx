@@ -49,7 +49,7 @@ const ItemInformations = ({
       if (user.username && product.userID.username) {
         dispatch(addProductID(product._id))
         const users = [user.username, product.userID.username].sort();
-        chatID = users.join("_");
+        chatID = users.join("_") + '_' + product._id;
         router.push(`/inbox/${chatID}`);
       }
     }
@@ -172,18 +172,6 @@ const ItemInformations = ({
               bgColor="bg-mainColor"
               textColor="text-white"
               text="Acheter"
-              wfull={true}
-              textSize="text-base"
-            />
-          </div>
-
-          {/* Bouton Faire une offre */}
-          <div className="mt-4 flex justify-center">
-            <Button
-              bgColor="bg-white"
-              border={true}
-              textColor="text-mainColor"
-              text="Faire une offre"
               wfull={true}
               textSize="text-base"
             />

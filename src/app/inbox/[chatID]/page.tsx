@@ -31,7 +31,8 @@ const Inbox = ({ params }: { params: Promise<{ chatID: string }> }) => {
 
   
   const { chatID } = use(params);
-  const usersInChat = chatID.split("_");
+  const usersInChat = chatID.split("_").slice(0, 2);
+
 
   interface Message {
     imageUrl: string;
@@ -159,7 +160,7 @@ const Inbox = ({ params }: { params: Promise<{ chatID: string }> }) => {
           </div>
 
           {/* Section envoi de message*/}
-          <MessageInput chatID={chatID} chatPartner={chatPartner} productID={productID}/>
+          <MessageInput chatID={chatID} chatPartner={chatPartner} productID={productID} productTitle={product?.title}/>
         </div>
       </div>
       <Footer />

@@ -29,6 +29,8 @@ const Inbox = () => {
       avatarUrl: string;
     }[];
     participantsUsername: string[];
+    productID: string
+    productTitle: string
   }
 
   const [chats, setChats] = useState<Chat[]>([]);
@@ -67,9 +69,10 @@ const Inbox = () => {
               <ConversationItem
                 key={index}
                 chatPartner={chat.participants.filter((participant) => participant.username !== user.username)[0]}
-                lastMessage={chat.lastMessage}
+                productTitle={chat.productTitle}
                 lastMessageTimestamp={chat.lastMessageTimestamp.seconds}
                 lastMessageSeen={chat.lastMessageSeenBy.includes(user.username || "")}
+                productID={chat.productID}
               />
             ))}
           </div>

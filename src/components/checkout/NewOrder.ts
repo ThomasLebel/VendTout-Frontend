@@ -56,6 +56,7 @@ const NewOrder = async (
             },
           ],
           productID: data.productID,
+          productTitle: data.productTitle,
           participantsUsername: [data.buyerUsername, data.sellerUsername],
           buyer: data.buyerUsername,
           seller: data.sellerUsername,
@@ -78,7 +79,6 @@ const NewOrder = async (
             lastMessageSeenBy: [],
             productID : data.productID
           });
-          console.log(data.productID)
         return(data.chatID)
       
     }
