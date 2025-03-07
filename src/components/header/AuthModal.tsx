@@ -31,6 +31,7 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
   const [identifier, setIdentifier] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   console.log(process.env.NEXT_PUBLIC_SERVER_URL)
 
@@ -55,6 +56,7 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
         email: email,
         password: password,
       };
+      setIsLoading(true);
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/signup`, {
         method: "POST",
         headers: {
@@ -67,8 +69,10 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
           if (data.result) {
             dispatch(updateUser(data.userInfos));
             setIsAuthModalOpen(false);
+            setIsLoading(false);
           } else {
             setError(data.error);
+            setIsLoading(false);
           }
         });
     }
@@ -86,6 +90,7 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
       return;
     } else {
       setError("");
+      setIsLoading(true);
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/signin`, {
         method: "POST",
         headers: {
@@ -98,8 +103,10 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
           if (data.result) {
             dispatch(updateUser(data.userInfos));
             setIsAuthModalOpen(false);
+            setIsLoading(false);
           } else {
             setError(data.error);
+            setIsLoading(false);
           }
         });
     }
@@ -141,6 +148,7 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
                   <input
                     type="text"
                     id="identifier"
+                    autoCapitalize="none"
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
                     placeholder="Email ou pseudo"
@@ -173,6 +181,7 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
                     textColor="text-white"
                     wfull={true}
                     textSize="text-base"
+                    loading={isLoading}
                   />
                 </div>
 
@@ -202,6 +211,7 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
                   <input
                     type="text"
                     id="pseudo"
+                    autoCapitalize="none"
                     value={pseudo}
                     onChange={(e) => setPseudo(e.target.value)}
                     placeholder="Pseudo"
@@ -211,6 +221,7 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
                   <input
                     type="email"
                     id="email"
+                    autoCapitalize="none"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email"
@@ -243,6 +254,7 @@ const AuthModal = ({ isAuthModalOpen, setIsAuthModalOpen }: AuthModalProps) => {
                     textColor="text-white"
                     wfull={true}
                     textSize="text-base"
+                    loading={isLoading}
                   />
                 </div>
 

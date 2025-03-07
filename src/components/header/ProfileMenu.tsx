@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/app/redux/store";
 import { logout } from "@/app/redux/slices/userSlice";
 
@@ -10,6 +11,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 const ProfileMenu = () => {
 
+  const router = useRouter()
 
   //Création du dispatch
   const dispatch = useAppDispatch();
@@ -19,7 +21,8 @@ const ProfileMenu = () => {
 
   //Fonction de déconnexion
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout())
+    router.push("/")
   };
 
   return (
@@ -79,12 +82,12 @@ const ProfileMenu = () => {
           </Link>
         </MenuItem>
         <MenuItem>
-          <Link className="p-3 block data-[focus]:bg-lightGrey" href="/">
+          <div className="p-3 block data-[focus]:bg-lightGrey" onClick={handleLogout}>
             <div className="flex items-center gap-2">
               <ArrowRightStartOnRectangleIcon className="size-7 text-darkGrey" />
-              <span className="text-base font-medium" onClick={handleLogout}>Se déconnecter</span>
+              <span className="text-base font-medium">Se déconnecter</span>
             </div>
-          </Link>
+          </div>
         </MenuItem>
       </MenuItems>
     </Menu>

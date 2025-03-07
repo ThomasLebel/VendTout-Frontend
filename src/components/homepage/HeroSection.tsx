@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/app/redux/store";
 
 import Button from "../ui/Button";
-import Link from "next/link";
 import AuthModal from "../header/AuthModal";
 
 const HeroSection = () => {
@@ -56,7 +55,7 @@ const HeroSection = () => {
         <h1 className="text-2xl font-semibold mb-5 w-full text-center">
           Prêts à faire du tri dans vos placards ?
         </h1>
-        <Link href="/additem">
+        <div onClick={handleSellNow}>
           <Button
             bgColor="bg-mainColor"
             textColor="text-white"
@@ -64,7 +63,7 @@ const HeroSection = () => {
             wfull={true}
             textSize="text-base"
           />
-        </Link>
+        </div>
       </div>
       <AuthModal isAuthModalOpen={openAuthModal} setIsAuthModalOpen={setOpenAuthModal}/>
     </section>

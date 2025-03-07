@@ -31,21 +31,21 @@ const categories: Category[] = [
   {
     name: "Femmes",
     icon: "https://images1.vinted.net/t/02_00c5c_bzPpha4dS84spMpDR2Dg1EUq/1739275102.png?s=974838d23d6c350dbbeb16ccef9a7a79d00c6377",
-    link: "/",
+    link: "/catalog?gender=Femme",
   },
   {
     name: "Hommes",
     icon: "https://images1.vinted.net/t/01_009f9_96Aj8KkPmWx9cqt6d61jAQJB/1739275096.png?s=0e4f5e43b67b5f2fb593ebd2b2417d57852a9c03",
-    link: "/",
+    link: "/catalog?gender=Homme",
   },
   {
     name: "Enfants",
     icon: "https://images1.vinted.net/t/04_0228c_JL5wH587wvW78QcpBLAAEiWr/1739275100.png?s=79e0a687c8bb18903a3bb0303cf864bb60503739",
-    link: "/",
+    link: "/catalog?gender=Enfants",
   },
 ];
 
-const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
+const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) => {
 
   const router = useRouter()
 
@@ -105,9 +105,11 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
           <h2 className="text-darkGrey text-sm mb-5">Parcourir</h2>
           {categories.map((category, i) => {
             return (
-              <div
+              <Link
                 className="flex gap-2 border-b border-vendtoutGrey border-opacity-20 py-3 hover:bg-lightGrey"
+                href={category.link}
                 key={i}
+                onClick={() => setIsDrawerOpen(false)}
               >
                 <Image
                   src={category.icon}
@@ -116,7 +118,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
                   height={24}
                 />
                 <h2 className="text-darkGrey">{category.name}</h2>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -127,6 +129,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
             <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href={`/member/${user.username}`}
+              onClick={() => setIsDrawerOpen(false)}
             >
               <div className="flex items-center gap-2">
                 <Image
@@ -148,6 +151,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
             <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/settings/profile"
+              onClick={() => setIsDrawerOpen(false)}
             >
               <div className="flex items-center gap-2">
                 <Cog6ToothIcon className="size-7 text-darkGrey" />
@@ -157,6 +161,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
             <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/"
+              onClick={() => setIsDrawerOpen(false)}
             >
               <div className="flex items-center gap-2">
                 <AdjustmentsHorizontalIcon className="size-7 text-darkGrey" />
@@ -166,6 +171,7 @@ const Drawer = ({ isLogged, setIsAuthModalOpen }: DrawerProps) => {
             <Link
               className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
               href="/orders"
+              onClick={() => setIsDrawerOpen(false)}
             >
               <div className="flex items-center gap-2">
                 <DocumentTextIcon className="size-7 text-darkGrey" />
