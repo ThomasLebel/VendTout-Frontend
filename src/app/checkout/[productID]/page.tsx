@@ -30,6 +30,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
   const [shippingFees, setShippingFees] = useState<number>(2.88);
   const [paymentMethod, setPaymentMethod] = useState<string>("credit card");
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/${productID}`)
@@ -48,6 +49,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
   }, [productPrice, serviceFees, shippingFees]);
 
   const handleBuy = async () => {
+    setIsLoading(true)
     if (user.username) {
       const result = await NewOrder(
         productID,
@@ -59,6 +61,9 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
       );
       if (result){
         router.push(`/inbox/${result}`)
+        setIsLoading(false)
+      } else {
+        setIsLoading(false)
       }
 
     }
@@ -80,6 +85,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
                 totalPrice={totalPrice}
                 button={false}
                 handleBuy={handleBuy}
+                isLoading={isLoading}
               />
             </div>
             {/* Infos Article */}
@@ -116,6 +122,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
                 textColor="text-white"
                 textSize="text-base"
                 wfull={true}
+                loading={isLoading}
               />
             </div>
           </div>
@@ -128,6 +135,7 @@ const Checkout = ({ params }: { params: Promise<{ productID: string }> }) => {
               totalPrice={totalPrice}
               button={true}
               handleBuy={handleBuy}
+              isLoading={isLoading}
             />
           </div>
         </div>

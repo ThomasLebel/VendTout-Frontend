@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/app/redux/store";
 import { logout } from "@/app/redux/slices/userSlice";
 
-import { ChevronDownIcon, Cog6ToothIcon, AdjustmentsHorizontalIcon, DocumentTextIcon, ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, Cog6ToothIcon, DocumentTextIcon, ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/outline";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 const ProfileMenu = () => {
@@ -62,14 +62,6 @@ const ProfileMenu = () => {
             <div className="flex items-center gap-2">
               <Cog6ToothIcon className="size-7 text-darkGrey" />
               <span className="text-base font-medium">Mes paramètres</span>
-            </div>
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <Link className="p-3 block data-[focus]:bg-lightGrey" href="/">
-            <div className="flex items-center gap-2">
-              <AdjustmentsHorizontalIcon className="size-7 text-darkGrey" />
-              <span className="text-base font-medium">Personnalisation</span>
             </div>
           </Link>
         </MenuItem>

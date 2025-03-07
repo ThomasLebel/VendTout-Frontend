@@ -6,7 +6,8 @@ const OrderSummary = ({
   shippingFees,
   totalPrice,
   button,
-  handleBuy
+  handleBuy,
+  isLoading,
 }: {
   productPrice: number;
   serviceFees: number;
@@ -14,6 +15,7 @@ const OrderSummary = ({
   totalPrice: number;
   button: boolean;
   handleBuy: () => void;
+  isLoading: boolean;
 }) => {
   return (
     <div className={`w-full h-full p-6 bg-white`}>
@@ -51,6 +53,7 @@ const OrderSummary = ({
           bgColor="bg-[#278358]"
           textColor="text-white"
           textSize="text-base"
+          loading={isLoading}
         />
       </div>}
     </div>

@@ -10,7 +10,6 @@ import Button from "../ui/Button";
 
 import {
   Cog6ToothIcon,
-  AdjustmentsHorizontalIcon,
   DocumentTextIcon,
   ArrowRightStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
@@ -156,16 +155,6 @@ const Drawer = ({ isLogged, setIsAuthModalOpen, setIsDrawerOpen }: DrawerProps) 
               <div className="flex items-center gap-2">
                 <Cog6ToothIcon className="size-7 text-darkGrey" />
                 <span className="text-base font-medium">Mes paramètres</span>
-              </div>
-            </Link>
-            <Link
-              className="block hover:bg-lightGrey border-b border-vendtoutGrey border-opacity-20 py-4"
-              href="/"
-              onClick={() => setIsDrawerOpen(false)}
-            >
-              <div className="flex items-center gap-2">
-                <AdjustmentsHorizontalIcon className="size-7 text-darkGrey" />
-                <span className="text-base font-medium">Personnalisation</span>
               </div>
             </Link>
             <Link

@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 import OrderItem from "@/components/orders/OrderItem";
 
 import { useEffect, useState } from "react";
@@ -62,7 +63,7 @@ const Orders = () => {
     <div>
       <Header />
       <div className="pt-32 w-full flex flex-col items-center">
-        <div className="mt-5 max-w-screen-xl w-full flex flex-col items-center p-6 lg:p-0">
+        <div className="mt-5 max-w-screen-xl w-full flex flex-col items-center p-6 lg:p-0 min-h-screen">
           <h1 className="text-xl font-semibold">Mes commandes</h1>
 
           {/* Sections boutons */}
@@ -134,6 +135,7 @@ const Orders = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
