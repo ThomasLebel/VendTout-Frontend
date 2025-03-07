@@ -21,6 +21,14 @@ import ProfileMenu from "./ProfileMenu";
 import Drawer from "./Drawer";
 import AuthModal from "./AuthModal";
 
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
+import { db } from "@/app/firebase/firebase";
+
 const Header = () => {
   
   const router = useRouter()
@@ -29,10 +37,27 @@ const Header = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const [nbChatsNotSeen, setNbChatsNotSeen] = useState<number>(0);
 
   useEffect(() => {
       setIsLogged(!!user.token);
   }, [user.token]);
+
+  useEffect(() => {
+    if (user.username) {
+      const querySnapshot = query(
+        collection(db, "chats"),
+        where("participantsUsername", "array-contains", user.username),
+      );
+      const unsubscribeChats = onSnapshot(querySnapshot, (snapshot) => {
+        setNbChatsNotSeen(snapshot.docs.filter((doc) => !doc.data().lastMessageSeenBy.includes(user.username)).length)
+      })
+      
+      return () => {
+        unsubscribeChats();
+      }
+    }
+  }, [user]);
 
   const handleSellNow = () => {
     if (user.token) {
@@ -66,15 +91,18 @@ const Header = () => {
             <nav>
               {/* Affichage des icones sur mobile si l'utilisateur est connecté */}
               {isLogged && (
-                <ul className="flex gap-5 items-center">
-                  <Link href='/inbox'>
+                <ul className="flex gap-2 items-center">
+                  <Link href='/inbox' className="relative p-2">
                     <EnvelopeIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
+                    {nbChatsNotSeen > 0 && <div className="h-4 w-4 rounded-full bg-[#D04555] absolute top-1 right-1 flex justify-center items-center">
+                      <span className="text-[10px] text-white font-medium">{nbChatsNotSeen}</span>
+                    </div>}
                   </Link>
-                  <li>
+                  <li className="p-2">
                     <BellIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
                   </li>
                   <Link href="/favourite_list">
-                    <li>
+                    <li className="p-2">
                       <HeartIcon className="size-6 text-iconGrey hover:text-mainColor cursor-pointer" />
                     </li>
                   </Link>
