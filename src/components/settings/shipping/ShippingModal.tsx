@@ -146,6 +146,7 @@ const ShippingModal = ({
                   text="Enregistrer"
                   textSize="text-base"
                   wfull={true}
+                  loading={loading}
                 />
               </div>
 
@@ -160,7 +161,6 @@ const ShippingModal = ({
                   text="Annuler"
                   textSize="text-base"
                   wfull={true}
-                  loading={loading}
                 />
               </div>
             </div>
