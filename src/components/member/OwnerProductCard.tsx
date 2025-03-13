@@ -50,7 +50,7 @@ const OwnerProductCard = ({
   return (
     <div>
       {/* Image produit et like */}
-      <div className="w-full bg-red-500 rounded-lg flex items-end justify-end relative">
+      <div className="w-full bg-lightGrey rounded-lg flex items-end justify-end relative">
         <Image
           src={product.photos[0]}
           height={1500}
