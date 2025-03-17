@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🛍️ VendTout - Clone Vinted 
 
-First, run the development server:
+**VendTout** est une marketplace complète inspirée de Vinted, permettant aux utilisateurs d'acheter, vendre et échanger des articles facilement. L'application inclut des fonctionnalités avancées comme **l'authentification, la publication d'annonce, le filtrage d'annonce, un système de favoris et un chat en temps réel**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Démo en ligne
+🔗 Site déployé : [vendtout.vercel.app](https://vendtout.vercel.app/)
+📹 Vidéo démo : [voir la vidéo démo](https://www.youtube.com/watch?v=MV_9-I8bRpU)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧱 Stack technique
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Frontend  | Backend | Base de données | Autres services |
+| -------- |-------| ---------------| ---------------|
+|Next.js 15|Node.js|MongoDB (Utilisateurs & annonces)| Cloudinary (Upload d'image)|
+|React 19|Express.js|Firestore (Messagerie instantanée)| Vercel (Déploiement)|
+|Typescript|Typescript||
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🖥️ Fonctionnalités principales
 
-## Learn More
+*   🔐 **Authentification sécurisée** (inscription / login)
+*   📸 **Upload d’images** avec prévisualisation
+*   👕 **Publication d'annonces**
+*   💬 **Messagerie en temps réel** entre acheteurs et vendeurs
+*   🛒 **Suivi de commande** intégré à la messagerie
+*   🔍 **Recherche / filtres** par prix, nom, catégorie
+*   🧾 **Pages produit détaillées**
+*   ⚙️ **Interface responsive**, rapide et intuitive
 
-To learn more about Next.js, take a look at the following resources:
+## 📸 Aperçu
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+|Accueil | Recherche |
+|:-------:|:---------:|
+|![VendTout_Accueil](https://github.com/user-attachments/assets/81688f03-f934-4797-ae85-d114b14d78eb)|![VendTout_Recherche](https://github.com/user-attachments/assets/de583d34-fd88-4337-bb5f-bd2592b41f81)|
+|**Article** | **Profil** |
+|![VendTout_Article](https://github.com/user-attachments/assets/fa66d1c2-d90e-483e-aafa-5db38e5e7c9b)|![VendTout_Profil](https://github.com/user-attachments/assets/fcf16637-7de3-4a96-8736-4653f752d4a1)|
+|**Favoris** | **Publication d'annonce** |
+|![VendTout_Favoris](https://github.com/user-attachments/assets/265a10cd-6b1f-4ab5-a1b7-d6bc2eaac24d)|![VendTout_Publication d'annonce](https://github.com/user-attachments/assets/01c15ccc-b0d8-4101-9ecb-b4091c3a299e)|
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
