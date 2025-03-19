@@ -1,11 +1,12 @@
 
-# 🛍️ VendTout - Clone Vinted 
+# 🛍️ VendTout - Clone Vinted - Frontend
 
 **VendTout** est une marketplace complète inspirée de Vinted, permettant aux utilisateurs d'acheter, vendre et échanger des articles facilement. L'application inclut des fonctionnalités avancées comme **l'authentification, la publication d'annonce, le filtrage d'annonce, un système de favoris et un chat en temps réel**.
 
 ## 🚀 Démo en ligne
 🔗 Site déployé : [vendtout.vercel.app](https://vendtout.vercel.app/)\
-📹 Vidéo démo : [voir la vidéo démo](https://www.youtube.com/watch?v=MV_9-I8bRpU)
+📹 Vidéo démo : [voir la vidéo démo](https://www.youtube.com/watch?v=MV_9-I8bRpU)\
+🛠️ Repo Backend : [Accéder au repo backend](https://github.com/ThomasLebel/VendTout-Backend)
 
 ## 🧱 Stack technique
 
